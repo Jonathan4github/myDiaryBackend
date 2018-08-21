@@ -33,4 +33,24 @@ describe('Entries', () => {
         done();
       });
   });
+  it('should get a specific Entry on api/v1/entries/2 GET', (done) => {
+    chai.request(app)
+      .get('/api/v1/entries/2')
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        done();
+      });
+  });
+  it('should fail for wrong specify  Entry id on api/v1/entries/5 GET', (done) => {
+    chai.request(app)
+      .get('/api/v1/entries/10')
+      .end((err, res) => {
+        res.should.have.status(404);
+        res.body.should.have.property('status');
+        res.body.should.have.property('message');
+        res.body.status.should.equal('fail');
+        done();
+      });
+  });
 });
