@@ -1,10 +1,12 @@
 import express from 'express';
-import { getEntries, getSpecificEntry } from '../controllers/entriesController';
+import { getEntries, getSpecificEntry, addEntry } from '../controllers/entriesController';
+import validateEntry from '../middleware/validateEntry';
 
 const router = express.Router();
 
 router.route('/entries/')
-  .get(getEntries);
+  .get(getEntries)
+  .post(validateEntry, addEntry);
 
 router.route('/entries/:entryId/')
   .get(getSpecificEntry);
