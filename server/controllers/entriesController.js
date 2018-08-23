@@ -38,4 +38,25 @@ function addEntry(req, res) {
     });
 }
 
-export { getEntries, getSpecificEntry, addEntry };
+function updateEntry(req, res) {
+  const entry = entriesData.find(e => e.id === parseInt(req.params.entryId, 10));
+  if (!entry) {
+    return res.status(400)
+      .json({
+        status: 'fail',
+        message: 'The entry with the given ID was not found'
+      });
+  }
+  entry.title = req.body.title;
+  entry.date = req.body.date;
+  entry.entry = req.body.entry;
+  return res.status(200)
+    .json({
+      status: 'success',
+      message: 'updated successfully'
+    });
+}
+
+export {
+  getEntries, getSpecificEntry, addEntry, updateEntry
+};

@@ -144,4 +144,86 @@ describe('Entries', () => {
         done();
       });
   });
+  // Update entry
+  it('should fail for wrong specify  Entry id on api/v1/entries/5 PUT', (done) => {
+    chai.request(app)
+      .put('/api/v1/entries/5')
+      .send({
+        title: 'Bootcamp cycle 34',
+        date: '2018-07-22',
+        entry: 'My most challenging learning experience...My most challenging learning experience...'
+      })
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.have.property('status');
+        res.body.should.have.property('message');
+        res.body.status.should.equal('fail');
+        done();
+      });
+  });
+  it('should not update with out title field on api/v1/entries/id PUT', (done) => {
+    chai.request(app)
+      .put('/api/v1/entries/2')
+      .send({
+        date: '2018-07-22',
+        entry: 'Most challenging learning experience'
+      })
+      .end((err, res) => {
+        res.should.have.status(400);
+        done();
+      });
+  });
+  it('should not update with out date field on api/v1/entries/id PUT', (done) => {
+    chai.request(app)
+      .put('/api/v1/entries/2')
+      .send({
+        title: 'Bootcamp',
+        entry: 'Most challenging learning experience'
+      })
+      .end((err, res) => {
+        res.should.have.status(400);
+        done();
+      });
+  });
+  it('should not update with empty date field on api/v1/entries/id PUT', (done) => {
+    chai.request(app)
+      .put('/api/v1/entries/2')
+      .send({
+        date: '',
+        title: 'Bootcamp',
+        entry: 'Most challenging learning experience'
+      })
+      .end((err, res) => {
+        res.should.have.status(400);
+        done();
+      });
+  });
+  it('should not update with out an entry field on api/v1/entries/id PUT', (done) => {
+    chai.request(app)
+      .put('/api/v1/entries/2')
+      .send({
+        date: '2018-07-22',
+        title: 'Bootcamp'
+      })
+      .end((err, res) => {
+        res.should.have.status(400);
+        done();
+      });
+  });
+  it('should update with complete entry fields and valid id', (done) => {
+    chai.request(app)
+      .put('/api/v1/entries/2')
+      .send({
+        title: 'Bootcamp cycle 34',
+        date: '2018-07-22',
+        entry: 'My most challenging learning experience...My most challenging learning experience...'
+      })
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.have.property('status');
+        res.body.should.have.property('message');
+        res.body.status.should.equal('success');
+        done();
+      });
+  });
 });

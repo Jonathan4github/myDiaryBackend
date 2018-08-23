@@ -1,5 +1,7 @@
 import express from 'express';
-import { getEntries, getSpecificEntry, addEntry } from '../controllers/entriesController';
+import {
+  getEntries, getSpecificEntry, addEntry, updateEntry
+} from '../controllers/entriesController';
 import validateEntry from '../middleware/validateEntry';
 
 const router = express.Router();
@@ -9,6 +11,7 @@ router.route('/entries/')
   .post(validateEntry, addEntry);
 
 router.route('/entries/:entryId/')
-  .get(getSpecificEntry);
+  .get(getSpecificEntry)
+  .put(validateEntry, updateEntry);
 
 export default router;

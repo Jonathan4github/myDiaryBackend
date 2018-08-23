@@ -1,6 +1,6 @@
 import validator from 'validator';
 
-export default function addEntryValidation(req, res, next) {
+export default function (req, res, next) {
   const { title, date, entry } = req.body,
     errorsMessage = {};
 
