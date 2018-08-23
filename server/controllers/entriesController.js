@@ -22,4 +22,20 @@ function getSpecificEntry(req, res) {
     .status(200);
 }
 
-export { getEntries, getSpecificEntry };
+function addEntry(req, res) {
+  const { title, date, entry } = req.body;
+  const newEntry = {
+    id: entriesData.length + 1,
+    title,
+    date,
+    entry
+  };
+  entriesData.push(newEntry);
+  return res.status(201)
+    .json({
+      status: 'success',
+      message: 'entry created successfully'
+    });
+}
+
+export { getEntries, getSpecificEntry, addEntry };

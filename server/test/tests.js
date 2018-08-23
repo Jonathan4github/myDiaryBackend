@@ -53,4 +53,95 @@ describe('Entries', () => {
         done();
       });
   });
+  it('should not post with out title field on api/v1/entries POST', (done) => {
+    chai.request(app)
+      .post('/api/v1/entries')
+      .send({
+        date: '2018-07-22',
+        entry: 'Most challenging learning experience'
+      })
+      .end((err, res) => {
+        res.should.have.status(400);
+        done();
+      });
+  });
+  it('should not post with out date field on api/v1/entries POST', (done) => {
+    chai.request(app)
+      .post('/api/v1/entries')
+      .send({
+        title: 'Bootcamp',
+        entry: 'Most challenging learning experience'
+      })
+      .end((err, res) => {
+        res.should.have.status(400);
+        done();
+      });
+  });
+  it('should not post with empty date field on api/v1/entries POST', (done) => {
+    chai.request(app)
+      .post('/api/v1/entries')
+      .send({
+        date: '',
+        title: 'Bootcamp',
+        entry: 'Most challenging learning experience'
+      })
+      .end((err, res) => {
+        res.should.have.status(400);
+        done();
+      });
+  });
+  it('should not post with out entry field on api/v1/entries POST', (done) => {
+    chai.request(app)
+      .post('/api/v1/entries')
+      .send({
+        date: '2018-07-22',
+        title: 'Bootcamp'
+      })
+      .end((err, res) => {
+        res.should.have.status(400);
+        done();
+      });
+  });
+  it('should post with complete entry fields on api/v1/entries POST', (done) => {
+    chai.request(app)
+      .post('/api/v1/entries')
+      .send({
+        title: 'Bootcamp cycle 34',
+        date: '2018-07-22',
+        entry: 'My most challenging learning experience...My most challenging learning experience...'
+      })
+      .end((err, res) => {
+        res.should.have.status(201);
+        res.body.should.have.property('status');
+        res.body.should.have.property('message');
+        res.body.status.should.equal('success');
+        done();
+      });
+  });
+  it('should not post if entry length is less 25 characters long on api/v1/entries POST', (done) => {
+    chai.request(app)
+      .post('/api/v1/entries')
+      .send({
+        title: 'Bootcamp cycle 34',
+        date: '2018-07-22',
+        entry: 'Bootcamp'
+      })
+      .end((err, res) => {
+        res.should.have.status(400);
+        done();
+      });
+  });
+  it('should not post if entry title is less 15 characters long on api/v1/entries POST', (done) => {
+    chai.request(app)
+      .post('/api/v1/entries')
+      .send({
+        title: 'Boot',
+        date: '2018-07-22',
+        entry: 'My most challenging learning experience. Bootcamp cycle 34'
+      })
+      .end((err, res) => {
+        res.should.have.status(400);
+        done();
+      });
+  });
 });
