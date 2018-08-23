@@ -1,9 +1,12 @@
 import express from 'express';
-import entryController from '../controllers/entriesController';
+import { getEntries, getSpecificEntry } from '../controllers/entriesController';
 
 const router = express.Router();
 
 router.route('/entries/')
-  .get(entryController);
+  .get(getEntries);
+
+router.route('/entries/:entryId/')
+  .get(getSpecificEntry);
 
 export default router;
