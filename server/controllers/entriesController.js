@@ -57,6 +57,24 @@ function updateEntry(req, res) {
     });
 }
 
+function deleteEntry(req, res) {
+  const entry = entriesData.find(e => e.id === parseInt(req.params.entryId, 10));
+  if (!entry) {
+    return res.status(400)
+      .json({
+        status: 'fail',
+        message: 'The entry with the given ID was not found'
+      });
+  }
+  const index = entriesData.indexOf(entry);
+  entriesData.splice(index, 1);
+  return res.status(200)
+    .json({
+      status: 'success',
+      message: 'Entry deleted successfully'
+    });
+}
+
 export {
-  getEntries, getSpecificEntry, addEntry, updateEntry
+  getEntries, getSpecificEntry, addEntry, updateEntry, deleteEntry
 };
