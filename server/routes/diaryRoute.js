@@ -1,6 +1,6 @@
 import express from 'express';
 import {
-  getEntries, getSpecificEntry, addEntry, updateEntry
+  getEntries, getSpecificEntry, addEntry, updateEntry, deleteEntry
 } from '../controllers/entriesController';
 import validateEntry from '../middleware/validateEntry';
 
@@ -12,6 +12,7 @@ router.route('/entries/')
 
 router.route('/entries/:entryId/')
   .get(getSpecificEntry)
-  .put(validateEntry, updateEntry);
+  .put(validateEntry, updateEntry)
+  .delete(deleteEntry);
 
 export default router;
