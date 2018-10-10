@@ -1,18 +1,9 @@
 import express from 'express';
-import {
-  getEntries, getSpecificEntry, addEntry, updateEntry, deleteEntry
-} from '../controllers/entriesController';
-import validateEntry from '../middleware/validateEntry';
+import  getAllEntry from '../controllers/entriesDBController';
 
 const router = express.Router();
 
-router.route('/entries/')
-  .get(getEntries)
-  .post(validateEntry, addEntry);
-
-router.route('/entries/:entryId/')
-  .get(getSpecificEntry)
-  .put(validateEntry, updateEntry)
-  .delete(deleteEntry);
-
+router.route('/entries')
+  .get(getAllEntry);
+  
 export default router;
