@@ -1,9 +1,11 @@
 import express from 'express';
-import  getAllEntry from '../controllers/entriesDBController';
+import  {getAllEntry, addEntry} from '../controllers/entriesDBController';
+import validateEntry from '../middleware/validateEntry';
 
 const router = express.Router();
 
-router.route('/entries')
-  .get(getAllEntry);
+router.route('/entries/')
+  .get(getAllEntry)
+  .post(validateEntry, addEntry);
   
 export default router;
