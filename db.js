@@ -12,54 +12,61 @@ pool.on('connect', () => {
 });
 
 /**
- * Create Tables
+ * Create Entry Table
  */
 const createTables = () => {
-  const queryText =
-    `CREATE TABLE IF NOT EXISTS
-      entries(
-        id UUID PRIMARY KEY,
-        title VARCHAR(128) NOT NULL,
-        entry VARCHAR(128) NOT NULL,
-        created_date TIMESTAMP,
-        modified_date TIMESTAMP
-      )`;
+  const query = ` 
+  DROP TABLE IF EXISTS users CASCADE;
+  DROP TABLE IF EXISTS entries CASCADE;
+  
+  CREATE TABLE IF NOT EXISTS users(
+  
+    id UUID PRIMARY KEY,
+  
+    fullname VARCHAR(150) NOT NULL,
+  
+    username VARCHAR(100) NOT NULL,
+  
+    email VARCHAR(255) UNIQUE NOT NULL,
+  
+    password VARCHAR(255) NOT NULL,
+    
+    reminder INTEGER  DEFAULT  0,
+    
+    image VARCHAR(255),
+    
+    created_date TIMESTAMP,
+    
+    modified_date TIMESTAMP
+  );
 
-  pool.query(queryText)
-    .then((res) => {
-      console.log(res);
-      pool.end();
-    })
-    .catch((err) => {
-      console.log(err);
-      pool.end();
-    });
-}
+  CREATE TABLE IF NOT EXISTS entries(
 
-/**
- * Drop Tables
- */
-const dropTables = () => {
-  const queryText = 'DROP TABLE IF EXISTS entries';
-  pool.query(queryText)
-    .then((res) => {
-      console.log(res);
-      pool.end();
-    })
-    .catch((err) => {
-      console.log(err);
-      pool.end();
-    });
-}
+    id UUID PRIMARY KEY,
+  
+    title VARCHAR(255) NOT NULL,
+  
+    entry TEXT NOT NULL,
+  
+    userId UUID REFERENCES users(id) ON DELETE CASCADE,
+  
+    created_date TIMESTAMP,
+    
+    modified_date TIMESTAMP
+    
+     )`;
 
-pool.on('remove', () => {
-  console.log('client removed');
-  process.exit(0);
-});
+  pool.query(query, (err) => {
+    if (err) {
+      return err.message;
+    }
+    pool.end();
+  }
+  );
+};
 
 module.exports = {
-  createTables,
-  dropTables
-};
+  createTables
+}
 
 require('make-runnable');
