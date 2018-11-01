@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
 const Helper = {
@@ -8,7 +8,7 @@ const Helper = {
    * @returns {string} returns hashed password
    */
   hashPassword(password){
-      return bcrypty.hashSync(password, bcrypt.genSaltSync(8));
+      return bcrypt.hashSync(password, bcrypt.genSaltSync(8));
   },
 
   /**
@@ -37,8 +37,11 @@ const Helper = {
    * @returns {string} token
    */
   generateToken(id) {
-    const token = jwt.sign(payload, process.env.SECRET, { expiresIn: '7d' }
-    );
+      const token = jwt.sign({
+          userId: id
+        },
+          process.env.SECRET, { expiresIn: '7d' }
+        );
     return token;
   }
 
