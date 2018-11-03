@@ -45,8 +45,8 @@ class UserController{
 
   signIn(req, res){
     const {email, password} = req.body;
-    const createQuery = `SELECT * FROM users WHERE email = '${email}'`;
-    db.query(createQuery)
+    const text = `SELECT * FROM users WHERE email = '${email}'`;
+    db.query(text)
       .then((user) =>{
         if (user.rows[0]){
           const isPassword = Helper.comparePassword(user.rows[0].password, password);

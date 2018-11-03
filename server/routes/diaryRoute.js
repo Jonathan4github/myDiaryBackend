@@ -3,22 +3,23 @@ import  {getAllEntry, getEntry, addEntry, updateEntry, deleteEntry} from '../con
 import validateEntry from '../middleware/validateEntry';
 import validateUser  from '../middleware/validateUser';
 import UserController from '../controllers/User';
+import Auth from '../middleware/Auth';
 
 const router = express.Router();
 
 router.route('/entries/')
-  .get(getAllEntry)
-  .post(validateEntry, addEntry);
+  .get(Auth.verifyToken, getAllEntry)
+  .post(Auth.verifyToken, validateEntry, addEntry);
 
 router.route('/entries/:entryId')
-  .get(getEntry)
+  .get(Auth.verifyToken, getEntry)
   .put(validateEntry, updateEntry)
   .delete(deleteEntry);
 
-router.route('/signup/')
+router.route('auth/signup/')
   .post(validateUser.Signup, UserController.signUp);
 
-router.route('/signin/')
+router.route('auth/signin/')
   .post(validateUser.Signin, UserController.signIn);
 
 export default router;

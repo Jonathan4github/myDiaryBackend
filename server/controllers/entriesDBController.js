@@ -4,7 +4,7 @@ import moment from 'moment';
 
 
 function getAllEntry(req, res) {
-  db.query('SELECT * FROM entries', (err, result) => {
+  db.query('SELECT * FROM entries where userId = $1',[req.user.id], (err, result) => {
     if (err) {
       return res.status(500)
       .json({
@@ -23,15 +23,16 @@ function getAllEntry(req, res) {
     .json({
       status:'Success',
       message: 'Entries retrieve successfully',
-      entries: result.rows
+      entries: result.rows, 
+      rowCount: result.rowCount
     });
   });
 }
 
 function getEntry(req, res){
   const entryId = req.params.entryId;
-  const sql = 'SELECT * FROM entries WHERE id = $1'
-  const params = [entryId];
+  const sql = 'SELECT * FROM entries WHERE id = $1 and userId = $2'
+  const params = [entryId, req.user.id];
   db.query(sql, params, (err, result) =>{
     if ((err) && (err.message).slice(0, 30) === 'invalid input syntax for uuid:'){
       return res.status(404)
@@ -66,8 +67,8 @@ function getEntry(req, res){
 
 function addEntry(req, res) {
   const { title, entry } = req.body;
-  const sql = 'INSERT INTO entries(id, title, entry, created_date, modified_date) VALUES ($1, $2, $3, $4, $5)';
-  const params = [uuid.v4(), title, entry, moment(new Date()), moment(new Date())];
+  const sql = 'INSERT INTO entries(id, title, entry, userId, created_date, modified_date) VALUES ($1, $2, $3, $4, $5, $6)';
+  const params = [uuid.v4(), title, entry, req.user.id, moment(new Date()), moment(new Date())];
 
   db.query(sql, params);
   return res.status(201)
