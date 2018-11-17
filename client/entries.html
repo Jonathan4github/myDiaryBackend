@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>myDiary | Entries</title>
+    <link rel="stylesheet" href="public/css/sidebar.css" type="text/css" />
+    <script src="js/font-awesome.js"></script>
+  </head>
+  <body>
+    <!-- Vertical sidebar -->
+    <div class="sidebar_menu" id="mySidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <center>
+        <a href="index.html"
+          ><h1 class="boxed_item"><span class="logo_bold">myDiary</span></h1>
+        </a>
+        <h2 class="logo_title">Write Any Where Any Time</h2>
+      </center>
+
+      <ul class="navigation_section">
+        <a href="newentry.html">
+          <li class="navigation_item"><i class="fa fa-pen-square navigation_item-i"></i>Compose</li>
+        </a>
+        <a href="enteries.html">
+          <li class="navigation_item"><i class="fa fa-heart navigation_item-i"></i>Entries</li>
+        </a>
+        <a href="enteries.html">
+          <li class="navigation_item"><i class="fa fa-user navigation_item-i"></i>Account</li>
+        </a>
+      </ul>
+
+      <center>
+        <a href="#"
+          ><h1 class="boxed_item boxed_item_smaller signup"><i class="fa fa-user"></i> LOGOUT</h1></a
+        >
+      </center>
+    </div>
+    <main>
+      <section class="container" id="container">
+        <div class="mobile-nav"><span class="mobile_menu_icon" onclick="openNav()">&#9776;</span></div>
+        <nav class="top-menu">
+          1 - 25 of 280 <i class="fa fa-angle-left top-menu-icon"></i><i class="fa fa-angle-right top-menu-icon"></i>
+        </nav>
+        <a href="entrydetail.html">
+          <div class="entery-item">
+            <div class="entery-letter orange">P</div>
+            <div class="entery-title">Post on myDiary...</div>
+            <div class="entery-text">Post on myDiary to test diary content...</div>
+            <div class="entery-date"><i class="fa fa-calendar" aria-hidden="true"></i> Jul 4 2018</div>
+          </div>
+        </a>
+
+        <a href="entrydetail.html">
+          <div class="entery-item ">
+            <div class="entery-letter tomato">B</div>
+            <div class="entery-title">Birthday...</div>
+            <div class="entery-text">Celebrate my birthday...</div>
+            <div class="entery-date"><i class="fa fa-calendar" aria-hidden="true"></i> Jul 4 2018</div>
+          </div>
+        </a>
+
+        <a href="entrydetail.html">
+          <div class="entery-item">
+            <div class="entery-letter teal-darken lime-green">D</div>
+            <div class="entery-title">Dad boutght a car</div>
+            <div class="entery-text">On a cool summer dad came home and he....</div>
+            <div class="entery-date"><i class="fa fa-calendar" aria-hidden="true"></i> Jul 4 2018</div>
+          </div>
+        </a>
+      </section>
+    </main>
+  </body>
+</html>
+
+<!-- Jquery library -->
+<script src="jquery/jquery-2.1.1.min.js"></script>
+<script src="js/myDiary.js"></script>

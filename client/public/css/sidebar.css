@@ -1,0 +1,325 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+}
+body {
+  background-color: #009688;
+}
+#logo {
+  height: 50px;
+  width: 43px;
+}
+
+.sidebar_menu {
+  position: fixed;
+  width: 250px;
+  top: 0;
+  bottom: 0;
+  max-height: 100vh;
+  opacity: 0.9;
+  transition: all 0.3s ease-in-out;
+}
+
+.boxed_item {
+  font-family: "Open Sans";
+  font-weight: 200;
+  padding: 10px 20px;
+  display: inline-block;
+  border: solid 2px white;
+  box-sizing: border-box;
+  font-size: 22px;
+  color: white;
+  text-align: center;
+  margin-top: 70px;
+}
+
+.logo_bold {
+  font-weight: 800;
+  position: relative;
+  top: -5px;
+}
+
+.logo_title {
+  color: white;
+  font-family: "Open Sans";
+  font-weight: 200;
+  font-size: 12px;
+  text-align: center;
+  padding: 5px 0;
+}
+
+.navigation_section {
+  margin: 20px 0;
+  display: block;
+  width: 200px;
+  margin-left: 25px;
+}
+
+.navigation_item-i {
+  padding-right: 10px;
+}
+.navigation_item {
+  font-weight: 200;
+  font-family: "Open Sans";
+  color: white;
+  padding: 12px 0px;
+  box-sizing: border-box;
+  font-size: 14px;
+  color: #fff;
+  border-bottom: solid 1px #d8d8d8;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.navigation_item:hover {
+  color: white;
+  transition: all 0.3s ease-in-out;
+}
+
+.boxed_item_smaller {
+  font-size: 12px;
+  color: #d5e2e9;
+  width: 200px;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  border-width: 1px;
+  border-color: #d5e2e9;
+  margin: 0 0 20px 0;
+}
+
+.boxed_item_smaller:hover {
+  color: #111;
+  transition: all 0.3s ease-in-out;
+}
+
+.container {
+  max-width: 100vw;
+  background: #fff;
+  position: relative;
+  margin: 0 0px 0px 250px;
+  top: 0;
+  overflow: hidden !important;
+  height: 100vh;
+}
+.closebtn {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+  color: #d8d8d8;
+}
+
+.mobile_menu_icon {
+  display: none;
+  font-size: 30px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+.search-style {
+  display: inline;
+}
+
+.entery-item,
+.detail-entery-header {
+  margin: 20px 0px 5px 20px;
+  border-bottom: 1px solid #d8d8d8;
+  padding: 5px;
+  max-width: 100vw;
+}
+.entery-item:hover {
+  border-bottom: 3px solid #ccc;
+  cursor: pointer;
+}
+.entery-letter {
+  border: 1px;
+  border-radius: 50px;
+  padding: 10px;
+  color: white;
+  width: 20px;
+  text-align: center;
+  max-width: 100vw;
+}
+
+.entery-title {
+  position: relative;
+  left: 50px;
+  top: -35px;
+  color: black;
+  font-weight: 600;
+  width: 400px;
+}
+.entery-text {
+  color: #757575;
+  position: relative;
+  left: 50px;
+  top: -33px;
+  max-width: 400px;
+}
+.entry-text-detail {
+  color: #757575;
+  position: relative;
+  left: 50px;
+  top: 30px;
+  max-width: 700px;
+  padding: 2px;
+}
+.entery-date {
+  color: #7986cb;
+  position: relative;
+  left: 50px;
+  top: -30px;
+  max-width: 350px;
+}
+
+.mobile-nav {
+  background-color: #009688;
+  color: white;
+  height: 60px;
+}
+.orange {
+  background-color: #ff9800;
+}
+.tomato {
+  background-color: tomato;
+}
+.lime-green {
+  background-color: #689f38;
+}
+.modify-entry {
+  margin-left: 15px;
+  padding-right: 4px;
+}
+.modify-entry-icon {
+  margin-right: 7px;
+}
+.modify-entry-icon:hover {
+  color: #757575;
+  cursor: pointer;
+}
+
+.top-menu {
+  background-color: silver;
+  color: teal;
+  padding: 20px;
+}
+.top-menu-icon {
+  padding-left: 20px;
+}
+
+/* Style inputs with type="text", select elements and textareas */
+input[type="text"],
+[type="date"],
+select,
+textarea {
+  width: 98%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+  resize: vertical;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+textarea:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Style the submit button with a specific background color etc */
+input[type="submit"] {
+  background-color: #009688;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* When moving the mouse over the submit button, add a darker green color */
+input[type="submit"]:hover {
+  background-color: rgb(54, 131, 131);
+}
+
+/* Add a background color and some padding around the form */
+.form-container {
+  border-radius: 5px;
+  background-color: #fff;
+  padding: 20px;
+}
+@media screen and (max-width: 550px) {
+  /* disable scroll */
+  html,
+  body {
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+  }
+  .container {
+    transform: translateX(-250px);
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .sidebar_menu {
+    transform: translateX(-250px);
+  }
+  .mobile_menu_icon {
+    display: block;
+  }
+  .closebtn {
+    display: block;
+  }
+
+  .entery-item {
+    margin-top: 10px;
+  }
+  .entery-text {
+    max-width: 200px;
+  }
+  .entery-title {
+    width: 90%;
+  }
+
+  .entry-text-detail {
+    position: relative;
+    left: 40px;
+    top: 25px;
+    max-width: 280px;
+    max-height: 100vh;
+    padding: 1px;
+  }
+}
+@media screen and (max-width: 800px) {
+  /* disable scroll */
+  html,
+  body {
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .container {
+    transform: translateX(-250px);
+    width: 100vw;
+    height: 100vh;
+  }
+  .sidebar_menu {
+    transform: translateX(-250px);
+  }
+  .mobile_menu_icon {
+    display: block;
+  }
+  .closebtn {
+    display: block;
+  }
+
+  .entry-text-detail {
+    width: 400px;
+  }
+}

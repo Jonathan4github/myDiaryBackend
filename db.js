@@ -1,5 +1,5 @@
-const { Pool } = require('pg');
-const dotenv = require('dotenv');
+const { Pool } = require("pg");
+const dotenv = require("dotenv");
 
 dotenv.config();
 
@@ -7,8 +7,8 @@ const pool = new Pool({
   connectionString: process.env.DATABASE_URL
 });
 
-pool.on('connect', () => {
-  console.log('connected to the db');
+pool.on("connect", () => {
+  console.log("connected to the db");
 });
 
 /**
@@ -24,8 +24,6 @@ const createTables = () => {
     id UUID PRIMARY KEY,
   
     fullname VARCHAR(150) NOT NULL,
-  
-    username VARCHAR(100) NOT NULL,
   
     email VARCHAR(255) UNIQUE NOT NULL,
   
@@ -56,17 +54,16 @@ const createTables = () => {
     
      )`;
 
-  pool.query(query, (err) => {
+  pool.query(query, err => {
     if (err) {
       return err.message;
     }
     pool.end();
-  }
-  );
+  });
 };
 
 module.exports = {
   createTables
-}
+};
 
-require('make-runnable');
+require("make-runnable");
