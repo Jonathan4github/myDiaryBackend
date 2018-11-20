@@ -72,6 +72,14 @@ body {
   transition: all 0.3s ease-in-out;
   cursor: pointer;
 }
+.nav_image {
+  text-align: center;
+  color: #fff;
+}
+.nav_image > img {
+  border-radius: 50%;
+  border: solid 2px #fff;
+}
 
 .navigation_item:hover {
   color: white;
@@ -96,12 +104,16 @@ body {
 
 .container {
   max-width: 100vw;
-  background: #fff;
+
   position: relative;
   margin: 0 0px 0px 250px;
   top: 0;
   overflow: hidden !important;
   height: 100vh;
+
+  background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+  background: linear-gradient(to right, #25c481, #25b7c4);
+  font-family: "Roboto", sans-serif;
 }
 .closebtn {
   display: none;
@@ -123,82 +135,10 @@ body {
   display: inline;
 }
 
-.entery-item,
-.detail-entery-header {
-  margin: 20px 0px 5px 20px;
-  border-bottom: 1px solid #d8d8d8;
-  padding: 5px;
-  max-width: 100vw;
-}
-.entery-item:hover {
-  border-bottom: 3px solid #ccc;
-  cursor: pointer;
-}
-.entery-letter {
-  border: 1px;
-  border-radius: 50px;
-  padding: 10px;
-  color: white;
-  width: 20px;
-  text-align: center;
-  max-width: 100vw;
-}
-
-.entery-title {
-  position: relative;
-  left: 50px;
-  top: -35px;
-  color: black;
-  font-weight: 600;
-  width: 400px;
-}
-.entery-text {
-  color: #757575;
-  position: relative;
-  left: 50px;
-  top: -33px;
-  max-width: 400px;
-}
-.entry-text-detail {
-  color: #757575;
-  position: relative;
-  left: 50px;
-  top: 30px;
-  max-width: 700px;
-  padding: 2px;
-}
-.entery-date {
-  color: #7986cb;
-  position: relative;
-  left: 50px;
-  top: -30px;
-  max-width: 350px;
-}
-
 .mobile-nav {
   background-color: #009688;
   color: white;
   height: 60px;
-}
-.orange {
-  background-color: #ff9800;
-}
-.tomato {
-  background-color: tomato;
-}
-.lime-green {
-  background-color: #689f38;
-}
-.modify-entry {
-  margin-left: 15px;
-  padding-right: 4px;
-}
-.modify-entry-icon {
-  margin-right: 7px;
-}
-.modify-entry-icon:hover {
-  color: #757575;
-  cursor: pointer;
 }
 
 .top-menu {
@@ -222,6 +162,7 @@ textarea {
   border: none;
   background: #f1f1f1;
   resize: vertical;
+  border-radius: 5px;
 }
 
 input[type="text"]:focus,
@@ -249,7 +190,8 @@ input[type="submit"]:hover {
 /* Add a background color and some padding around the form */
 .form-container {
   border-radius: 5px;
-  background-color: #fff;
+  background-color: transparent;
+  color: #fff;
   padding: 20px;
 }
 @media screen and (max-width: 550px) {
@@ -275,25 +217,6 @@ input[type="submit"]:hover {
   .closebtn {
     display: block;
   }
-
-  .entery-item {
-    margin-top: 10px;
-  }
-  .entery-text {
-    max-width: 200px;
-  }
-  .entery-title {
-    width: 90%;
-  }
-
-  .entry-text-detail {
-    position: relative;
-    left: 40px;
-    top: 25px;
-    max-width: 280px;
-    max-height: 100vh;
-    padding: 1px;
-  }
 }
 @media screen and (max-width: 800px) {
   /* disable scroll */
@@ -318,8 +241,42 @@ input[type="submit"]:hover {
   .closebtn {
     display: block;
   }
-
-  .entry-text-detail {
-    width: 400px;
-  }
+}
+#entry-table-heading {
+  font-size: 27px;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 250;
+  text-align: center;
+  margin-bottom: 15px;
+}
+table {
+  width: 100%;
+  table-layout: fixed;
+}
+.tbl-header {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+.tbl-content {
+  height: 300px;
+  overflow-x: auto;
+  margin-top: 0px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+th {
+  padding: 20px 15px;
+  text-align: left;
+  font-weight: 500;
+  font-size: 12px;
+  color: #fff;
+  text-transform: uppercase;
+}
+td {
+  padding: 15px;
+  text-align: left;
+  vertical-align: middle;
+  font-weight: 300;
+  font-size: 12px;
+  color: #fff;
+  border-bottom: solid 1px rgba(255, 255, 255, 0.1);
 }
