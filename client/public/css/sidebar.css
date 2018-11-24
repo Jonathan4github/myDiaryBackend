@@ -187,12 +187,25 @@ input[type="submit"]:hover {
   background-color: rgb(54, 131, 131);
 }
 
+.icon-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  width: 70px;
+  color: teal;
+}
+.view-button:hover {
+  color: greenyellow;
+}
 /* Add a background color and some padding around the form */
 .form-container {
   border-radius: 5px;
   background-color: transparent;
   color: #fff;
   padding: 20px;
+}
+#hide-update-btn {
+  display: none;
 }
 @media screen and (max-width: 550px) {
   /* disable scroll */
