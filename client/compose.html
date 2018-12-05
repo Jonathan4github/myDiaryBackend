@@ -50,12 +50,28 @@
         <div class="form-container">
           <form id="compose">
             <label for="title">Title</label>
-            <input type="text" id="title" name="title" placeholder="Write entry title..." />
+            <input
+              type="text"
+              id="title"
+              name="title"
+              placeholder="Write entry title..."
+              pattern=".{10,30}"
+              title="Title should be 10 to 30 characters"
+            />
 
             <label for="date">Date</label> <input type="date" id="date" name="date" />
 
             <label for="entry">Entry</label>
-            <textarea id="entry" name="entry" placeholder="Write something.." style="height:200px"></textarea>
+            <textarea
+              id="entry"
+              name="entry"
+              placeholder="Write something.."
+              style="height:200px"
+              maxlength="1000"
+              and
+              minlength="10"
+              title="Entry should be 10 to 1000 characters"
+            ></textarea>
 
             <input type="submit" value="Save" />
           </form>
