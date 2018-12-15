@@ -1,6 +1,6 @@
 const { Pool } = require('pg');
 const dotenv = require('dotenv');
-const configuration = require('./server/config/config');
+import configuration from '../config/config';
 
 const env = process.env.Node_ENV || 'test';
 const config = configuration[env];
@@ -55,9 +55,9 @@ const createTables = () => {
   
     created_date TIMESTAMP,
     
-    modified_date TIMESTAMP
+    modified_date TIMESTAMP     
     
-     )`;
+  )`;
 
   db.query(query, err => {
     if (err) {

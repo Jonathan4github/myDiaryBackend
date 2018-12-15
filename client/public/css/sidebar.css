@@ -23,7 +23,7 @@ body {
 }
 
 .boxed_item {
-  font-family: "Open Sans";
+  font-family: 'Open Sans';
   font-weight: 200;
   padding: 10px 20px;
   display: inline-block;
@@ -43,7 +43,7 @@ body {
 
 .logo_title {
   color: white;
-  font-family: "Open Sans";
+  font-family: 'Open Sans';
   font-weight: 200;
   font-size: 12px;
   text-align: center;
@@ -62,7 +62,7 @@ body {
 }
 .navigation_item {
   font-weight: 200;
-  font-family: "Open Sans";
+  font-family: 'Open Sans';
   color: white;
   padding: 12px 0px;
   box-sizing: border-box;
@@ -113,7 +113,7 @@ body {
 
   background: -webkit-linear-gradient(left, #25c481, #25b7c4);
   background: linear-gradient(to right, #25c481, #25b7c4);
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 .closebtn {
   display: none;
@@ -151,8 +151,8 @@ body {
 }
 
 /* Style inputs with type="text", select elements and textareas */
-input[type="text"],
-[type="date"],
+input[type='text'],
+[type='date'],
 select,
 textarea {
   width: 98%;
@@ -165,15 +165,15 @@ textarea {
   border-radius: 5px;
 }
 
-input[type="text"]:focus,
-input[type="date"]:focus,
+input[type='text']:focus,
+input[type='date']:focus,
 textarea:focus {
   background-color: #ddd;
   outline: none;
 }
 
 /* Style the submit button with a specific background color etc */
-input[type="submit"] {
+input[type='submit'] {
   background-color: #009688;
   color: white;
   padding: 12px 20px;
@@ -183,7 +183,7 @@ input[type="submit"] {
 }
 
 /* When moving the mouse over the submit button, add a darker green color */
-input[type="submit"]:hover {
+input[type='submit']:hover {
   background-color: rgb(54, 131, 131);
 }
 
@@ -197,6 +197,15 @@ input[type="submit"]:hover {
 .view-button:hover {
   color: greenyellow;
 }
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
 /* Add a background color and some padding around the form */
 .form-container {
   border-radius: 5px;

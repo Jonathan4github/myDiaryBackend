@@ -1,7 +1,7 @@
-import db from "../models/diaryDB";
-import moment from "moment";
-import uuid from "UUID";
-import Helper from "../controllers/Help";
+import db from '../models/diaryDB';
+import moment from 'moment';
+import uuid from 'UUID';
+import Helper from '../controllers/Help';
 
 class UserController {
   /**
@@ -25,14 +25,14 @@ class UserController {
         const token = Helper.generateToken(user.rows[0].id);
         req.token = token;
         return res.status(201).json({
-          status: "Success",
-          message: "Sign up Sucessfully",
+          status: 'Success',
+          message: 'Sign up Sucessfully',
           token
         });
       })
       .catch(err =>
         res.status(500).json({
-          status: "Failed",
+          status: 'Failed',
           message: err.message
         })
       );
@@ -49,8 +49,8 @@ class UserController {
             const token = Helper.generateToken(user.rows[0].id);
             req.token = token;
             return res.status(200).json({
-              status: "Success",
-              message: "Sucessful login",
+              status: 'Success',
+              message: 'Sucessful login',
               data: {
                 id: user.rows[0].id,
                 fullname: user.rows[0].fullname,
@@ -61,17 +61,18 @@ class UserController {
           }
         }
         return res.status(401).json({
-          status: "Fail",
-          message: "The credentials you provided is incorrect"
+          status: 'Fail',
+          message: 'The credentials you provided is incorrect'
         });
       })
       .catch(err => {
         res.status(500).json({
-          status: "Failed",
+          status: 'Failed',
           message: err.message
         });
       });
   }
+
 }
 
 export default new UserController();
