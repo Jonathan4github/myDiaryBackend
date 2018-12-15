@@ -1,5 +1,4 @@
 import db from '../models/diaryDB';
-import uuid from 'uuid';
 import moment from 'moment';
 
 function getAllEntry(req, res) {
