@@ -1,14 +1,21 @@
 language: node_js
 node_js:
   - '8.11.2'
+ssudo: required
+dist: trusty
+addons:
+  postgresql: '9.6'
 services:
   - postgresql
-
 before_script:
-  - npm install
-  - npm install uuid --save
   - psql -c 'create database myDiaryTest;' -U postgres
+env:
+  - Test_URL=postgres://postgres:postgres@localhost:5432/myDiaryTest
+script: npm run test
 
 after_success:
   - npm run coveralls
   - codeclimate-test-reporter < ./coverage/lcov.info
+cache:
+  directories:
+    - 'node_modules'
