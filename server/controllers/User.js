@@ -1,6 +1,6 @@
 import db from '../models/diaryDB';
 import moment from 'moment';
-
+import uuid from 'UUID';
 import Helper from '../controllers/Help';
 
 class UserController {

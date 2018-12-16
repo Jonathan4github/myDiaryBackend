@@ -26,7 +26,7 @@ const createTables = () => {
   
   CREATE TABLE IF NOT EXISTS users(
   
-    id UUID PRIMARY KEY,
+    id uuid PRIMARY KEY,
   
     fullname VARCHAR(150) NOT NULL,
   
@@ -45,19 +45,19 @@ const createTables = () => {
 
   CREATE TABLE IF NOT EXISTS entries(
 
-    id UUID PRIMARY KEY,
+    id uuid PRIMARY KEY,
   
     title VARCHAR(255) NOT NULL,
   
     entry TEXT NOT NULL,
   
-    userId UUID REFERENCES users(id) ON DELETE CASCADE,
+    userId uuid REFERENCES users(id) ON DELETE CASCADE,
   
     created_date TIMESTAMP,
     
-    modified_date TIMESTAMP     
+    modified_date TIMESTAMP
     
-  )`;
+     )`;
 
   db.query(query, err => {
     if (err) {

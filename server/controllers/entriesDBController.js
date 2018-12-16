@@ -1,5 +1,6 @@
 import db from '../models/diaryDB';
 import moment from 'moment';
+import uuid from 'UUID';
 
 function getAllEntry(req, res) {
   db.query('SELECT * FROM entries where userId = $1', [req.user.id], (err, result) => {
