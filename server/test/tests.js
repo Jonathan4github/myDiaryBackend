@@ -40,7 +40,7 @@ describe('All test case for mydiary', () => {
         email: 'joshua@gmail.com',
         password: 'password'
       })
-      
+
       .end((err, res) => {
         res.should.have.status(201);
         res.body.status.should.equal('Success');
@@ -57,7 +57,6 @@ describe('All test case for mydiary', () => {
         email: 'joshua@gmail.com',
         password: 'password'
       })
-      .set('x-access-token', token)
       .end((err, res) => {
         res.should.have.status(409);
         res.body.status.should.equal('Failed');
