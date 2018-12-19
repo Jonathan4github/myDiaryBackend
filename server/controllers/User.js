@@ -1,7 +1,7 @@
 import db from '../models/diaryDB';
 import moment from 'moment';
-import uuid from 'UUID';
 import Helper from '../controllers/Help';
+// import uuid from 'uuid';
 
 class UserController {
   /**
@@ -14,28 +14,25 @@ class UserController {
     const { fullname, email, password } = req.body;
     const hashPassword = Helper.hashPassword(password);
 
-    const createQuery = `INSERT INTO
-      users(id, fullname, email, password, created_date, modified_date)
-      VALUES($1, $2, $3, $4, $5, $6)
-      returning *`;
-    const values = [uuid.v4(), fullname, email, hashPassword, moment(new Date()), moment(new Date())];
+    const createQuery =
+      'INSERT INTO users (fullname, email, password, created_date, modified_date)  VALUES($1, $2, $3, $4, $5) returning *';
+    const values = [fullname, email, hashPassword, moment(new Date()), moment(new Date())];
 
-    db.query(createQuery, values)
-      .then(user => {
-        const token = Helper.generateToken(user.rows[0].id);
-        req.token = token;
-        return res.status(201).json({
-          status: 'Success',
-          message: 'Sign up Sucessfully',
-          token
-        });
-      })
-      .catch(err =>
-        res.status(500).json({
+    db.query(createQuery, values, (error, user) => {
+      if (error) {
+        return res.status(500).json({
           status: 'Failed',
-          message: err.message
-        })
-      );
+          message: error
+        });
+      }
+      const token = Helper.generateToken(user.rows[0].id);
+      req.token = token;
+      return res.status(201).json({
+        status: 'Success',
+        message: 'Sign up Sucessfully',
+        token
+      });
+    });
   }
 
   signIn(req, res) {

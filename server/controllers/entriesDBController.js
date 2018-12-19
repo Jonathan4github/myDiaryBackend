@@ -1,6 +1,5 @@
 import db from '../models/diaryDB';
 import moment from 'moment';
-import uuid from 'UUID';
 
 function getAllEntry(req, res) {
   db.query('SELECT * FROM entries where userId = $1', [req.user.id], (err, result) => {
@@ -30,12 +29,6 @@ function getEntry(req, res) {
   const sql = 'SELECT * FROM entries WHERE id = $1 and userId = $2';
   const params = [entryId, req.user.id];
   db.query(sql, params, (err, result) => {
-    if (err && err.message.slice(0, 30) === 'invalid input syntax for uuid:') {
-      return res.status(404).json({
-        status: 'Failed',
-        message: 'Please enter a valid entry id (uuid)'
-      });
-    }
     if (err) {
       return res.status(500).json({
         status: 'Failed',
@@ -58,9 +51,8 @@ function getEntry(req, res) {
 
 function addEntry(req, res) {
   const { title, entry } = req.body;
-  const sql =
-    'INSERT INTO entries(id, title, entry, userId, created_date, modified_date) VALUES ($1, $2, $3, $4, $5, $6)';
-  const params = [uuid.v4(), title, entry, req.user.id, moment(new Date()), moment(new Date())];
+  const sql = 'INSERT INTO entries(title, entry, userId, created_date, modified_date) VALUES ($1, $2, $3, $4, $5)';
+  const params = [title, entry, req.user.id, moment(new Date()), moment(new Date())];
 
   db.query(sql, params);
   return res.status(201).json({
@@ -76,12 +68,6 @@ function updateEntry(req, res) {
   const params = [title, entry, moment(new Date()), entryId];
 
   db.query(sql, params, (err, result) => {
-    if (err && err.message.slice(0, 30) === 'invalid input syntax for uuid:') {
-      return res.status(404).json({
-        status: 'Failed',
-        message: 'Please enter a valid entry id (uuid)'
-      });
-    }
     if (err) {
       return res.status(500).json({
         status: 'Failed',
@@ -107,12 +93,6 @@ function deleteEntry(req, res) {
   const params = [entryId];
 
   db.query(sql, params, (err, result) => {
-    if (err && err.message.slice(0, 30) === 'invalid input syntax for uuid:') {
-      return res.status(404).json({
-        status: 'Failed',
-        message: 'Please enter a valid entry id (uuid)'
-      });
-    }
     if (err) {
       return res.status(500).json({
         status: 'failed',

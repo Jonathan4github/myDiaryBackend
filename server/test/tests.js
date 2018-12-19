@@ -31,7 +31,7 @@ describe('All test case for mydiary', () => {
         done();
       });
   });
-  it('Test case for user signup: create new user and return `201`', done => {
+  it('Valid credential SignUp user and return `201`', done => {
     chai
       .request(app)
       .post('/api/v1/auth/signup/')
@@ -47,7 +47,7 @@ describe('All test case for mydiary', () => {
         done();
       });
   });
-  it('check if user already exist and return`409`', done => {
+  it('SignUp: user already exist return`409`', done => {
     chai
       .request(app)
       .post('/api/v1/auth/signup/')
@@ -63,7 +63,7 @@ describe('All test case for mydiary', () => {
         done();
       });
   });
-  it('should not create user and return`400`', done => {
+  it('SignUp: fullname, email & password undefined return`400`', done => {
     chai
       .request(app)
       .post('/api/v1/auth/signup/')
@@ -73,7 +73,7 @@ describe('All test case for mydiary', () => {
         done();
       });
   });
-  it('should not create user and return`400`', done => {
+  it('SignUp: email & password undefined return`400`', done => {
     chai
       .request(app)
       .post('/api/v1/auth/signup/')
@@ -85,7 +85,7 @@ describe('All test case for mydiary', () => {
         done();
       });
   });
-  it('should not create user and return`400`', done => {
+  it('SignUp: password undefined return`400`', done => {
     chai
       .request(app)
       .post('/api/v1/auth/signup/')
@@ -98,7 +98,7 @@ describe('All test case for mydiary', () => {
         done();
       });
   });
-  it('should not create user and return`400`', done => {
+  it('SignUp: empty fullname, email & password return`400`', done => {
     chai
       .request(app)
       .post('/api/v1/auth/signup/')
@@ -112,7 +112,7 @@ describe('All test case for mydiary', () => {
         done();
       });
   });
-  it('check if user fullname is invalid and return`400`', done => {
+  it('SignUp: Invalid fullname length return`400`', done => {
     chai
       .request(app)
       .post('/api/v1/auth/signup/')
@@ -127,7 +127,7 @@ describe('All test case for mydiary', () => {
         done();
       });
   });
-  it('check if email is invalid return`400`', done => {
+  it('SignUp: Invalid email address return`400`', done => {
     chai
       .request(app)
       .post('/api/v1/auth/signup/')
@@ -142,7 +142,7 @@ describe('All test case for mydiary', () => {
         done();
       });
   });
-  it('check if sign up password is invalid return`400`', done => {
+  it('SignUp: Invalid password length return`400`', done => {
     chai
       .request(app)
       .post('/api/v1/auth/signup/')
@@ -157,7 +157,7 @@ describe('All test case for mydiary', () => {
         done();
       });
   });
-  it('should check if email is invalid return `400`', done => {
+  it('SignIn: Invalid email address return `400`', done => {
     chai
       .request(app)
       .post('/api/v1/auth/signin')
@@ -171,7 +171,7 @@ describe('All test case for mydiary', () => {
         done();
       });
   });
-  it('should check if password is invalid return `400`', done => {
+  it('SignIn: invalid password length return `400`', done => {
     chai
       .request(app)
       .post('/api/v1/auth/signin')
@@ -185,7 +185,7 @@ describe('All test case for mydiary', () => {
         done();
       });
   });
-  it('should check invalid credential return `401`', done => {
+  it('SignIn: invalid credential return `401`', done => {
     chai
       .request(app)
       .post('/api/v1/auth/signin')
@@ -200,7 +200,7 @@ describe('All test case for mydiary', () => {
         done();
       });
   });
-  it('should sign in return `200`', done => {
+  it('Valid credential SignIn return `200`', done => {
     chai
       .request(app)
       .post('/api/v1/auth/signin')
@@ -216,7 +216,7 @@ describe('All test case for mydiary', () => {
         done();
       });
   });
-  it('should check wrong token return `500`', done => {
+  it('SignIn: invalid token return `500`', done => {
     chai
       .request(app)
       .post('/api/v1/auth/signin')
@@ -232,7 +232,7 @@ describe('All test case for mydiary', () => {
         done();
       });
   });
-  it('All test case for user entries: invalid input return`400`', done => {
+  it('Entries: title & entry undefined return`400`', done => {
     chai
       .request(app)
       .post('/api/v1/entries')
@@ -243,7 +243,7 @@ describe('All test case for mydiary', () => {
         done();
       });
   });
-  it('Invalid title input return`400`', done => {
+  it('Entries: invalid title length return`400`', done => {
     chai
       .request(app)
       .post('/api/v1/entries')
@@ -258,7 +258,7 @@ describe('All test case for mydiary', () => {
         done();
       });
   });
-  it('Invalid title input return`400`', done => {
+  it('Entries: title undefined return`400`', done => {
     chai
       .request(app)
       .post('/api/v1/entries')
@@ -272,7 +272,7 @@ describe('All test case for mydiary', () => {
         done();
       });
   });
-  it('Invalid entry input return`400`', done => {
+  it('Entries: entry undefined return`400`', done => {
     chai
       .request(app)
       .post('/api/v1/entries')
@@ -286,7 +286,7 @@ describe('All test case for mydiary', () => {
         done();
       });
   });
-  it('Invalid entry input return`400`', done => {
+  it('Entries: invalid entry length return`400`', done => {
     chai
       .request(app)
       .post('/api/v1/entries')
@@ -301,7 +301,7 @@ describe('All test case for mydiary', () => {
         done();
       });
   });
-  it('Invalid entry input return`401`', done => {
+  it('Entries: invalid token return`401`', done => {
     chai
       .request(app)
       .post('/api/v1/entries')
@@ -315,7 +315,7 @@ describe('All test case for mydiary', () => {
         done();
       });
   });
-  it('Add entry input and return`201`', done => {
+  it('Entries: add entry for valid input and return`201`', done => {
     chai
       .request(app)
       .post('/api/v1/entries')
@@ -332,10 +332,10 @@ describe('All test case for mydiary', () => {
       });
   });
   //Update entry
-  it('(Update entry): invalid input return`400`', done => {
+  it('Update Entry: title and entry undefined return`400`', done => {
     chai
       .request(app)
-      .put('/api/v1/entries/765f4b9f-2564-4a6a-b252-4f60be63031b')
+      .put('/api/v1/entries/1')
       .set('x-access-token', token)
       .send({})
       .end((err, res) => {
@@ -343,10 +343,10 @@ describe('All test case for mydiary', () => {
         done();
       });
   });
-  it('(Update entry): Invalid title input return`400`', done => {
+  it('Update Entry: invalid title length return`400`', done => {
     chai
       .request(app)
-      .put('/api/v1/entries/765f4b9f-2564-4a6a-b252-4f60be63031b')
+      .put('/api/v1/entries/1')
       .set('x-access-token', token)
       .send({
         title: 'hi',
@@ -358,10 +358,10 @@ describe('All test case for mydiary', () => {
         done();
       });
   });
-  it('(Update entry): Invalid title input return`400`', done => {
+  it('Update Entry: title undefined return`400`', done => {
     chai
       .request(app)
-      .put('/api/v1/entries/765f4b9f-2564-4a6a-b252-4f60be63031b')
+      .put('/api/v1/entries/1')
       .set('x-access-token', token)
       .send({
         entry: 'My diary bootcamp project'
@@ -372,10 +372,10 @@ describe('All test case for mydiary', () => {
         done();
       });
   });
-  it('(Update entry): Invalid entry input return`400`', done => {
+  it('Update Entry: entry undefined return`400`', done => {
     chai
       .request(app)
-      .put('/api/v1/entries/765f4b9f-2564-4a6a-b252-4f60be63031b')
+      .put('/api/v1/entries/1')
       .set('x-access-token', token)
       .send({
         title: 'My Dairy project'
@@ -386,10 +386,10 @@ describe('All test case for mydiary', () => {
         done();
       });
   });
-  it('(Update entry): Invalid entry input return`400`', done => {
+  it('Update Entry: invalid entry length return`400`', done => {
     chai
       .request(app)
-      .put('/api/v1/entries/765f4b9f-2564-4a6a-b252-4f60be63031b')
+      .put('/api/v1/entries/1')
       .set('x-access-token', token)
       .send({
         title: 'My Dairy project',
@@ -401,10 +401,10 @@ describe('All test case for mydiary', () => {
         done();
       });
   });
-  it('(Update entry): Invalid entry input return`401`', done => {
+  it('Update entry: invalid token return`401`', done => {
     chai
       .request(app)
-      .put('/api/v1/entries/765f4b9f-2564-4a6a-b252-4f60be63031b')
+      .put('/api/v1/entries/1')
       .set('x-access-token', wrongToken)
       .send({
         title: 'My Dairy project',
@@ -415,21 +415,21 @@ describe('All test case for mydiary', () => {
         done();
       });
   });
-  it('(Update entry): Update entry input and return`201`', done => {
+  it('Update Entry: valid input, update entry and return`200`', done => {
     chai
       .request(app)
-      .put('/api/v1/entries/765f4b9f-2564-4a6a-b252-4f60be63031b')
+      .put('/api/v1/entries/1')
       .set('x-access-token', token)
       .send({
         title: 'My Dairy project',
         entry: 'Andela Bootcamp Camp Project'
       })
       .end((err, res) => {
-        res.should.have.status(404);
+        res.should.have.status(200);
         done();
       });
   });
-  it('get ALL Entries without token return 401', done => {
+  it('Entries: get ALL entries missing token return 401', done => {
     chai
       .request(app)
       .get('/api/v1/entries')
@@ -438,7 +438,7 @@ describe('All test case for mydiary', () => {
         done();
       });
   });
-  it('should get ALL Entries on api/v1/entries GET', done => {
+  it('Entries: get ALL Entries with valid token return 200', done => {
     chai
       .request(app)
       .get('/api/v1/entries')
@@ -446,6 +446,75 @@ describe('All test case for mydiary', () => {
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');
+        done();
+      });
+  });
+  it('Entries: get ALL Entries. Invalid token return 200', done => {
+    chai
+      .request(app)
+      .get('/api/v1/entries')
+      .set('x-access-token', wrongToken)
+      .end((err, res) => {
+        res.should.have.status(401);
+        done();
+      });
+  });
+  it('Entries: get single entry with valid token return 200', done => {
+    chai
+      .request(app)
+      .get('/api/v1/entries/1')
+      .set('x-access-token', token)
+      .end((err, res) => {
+        res.should.have.status(200);
+        done();
+      });
+  });
+  it('Entries: get single entry with invalid token return 401', done => {
+    chai
+      .request(app)
+      .get('/api/v1/entries/1')
+      .set('x-access-token', wrongToken)
+      .end((err, res) => {
+        res.should.have.status(401);
+        done();
+      });
+  });
+  it('Entries: get single entry with missing token return 500', done => {
+    chai
+      .request(app)
+      .get('/api/v1/entries/1')
+      .end((err, res) => {
+        res.should.have.status(401);
+        done();
+      });
+  });
+  it('Entries: get single entry with invalid id return 404', done => {
+    chai
+      .request(app)
+      .get('/api/v1/entries/3')
+      .set('x-access-token', token)
+      .end((err, res) => {
+        res.should.have.status(404);
+        done();
+      });
+  });
+  it('Entries: delete entry with invalid id return 404', done => {
+    chai
+      .request(app)
+      .delete('/api/v1/entries/3')
+      .set('x-access-token', token)
+      .end((err, res) => {
+        res.should.have.status(404);
+        done();
+      });
+  });
+  it('Entries: delete entry return 200', done => {
+    chai
+      .request(app)
+      .delete('/api/v1/entries/1')
+      .set('x-access-token', token)
+      .end((err, res) => {
+        res.should.have.status(200);
         done();
       });
   });

@@ -38,12 +38,6 @@ class UserValidation {
   Signin(req, res, next) {
     const { email, password } = req.body,
       errorMessage = {};
-
-    if (email === undefined || password === undefined) {
-      return res.status(400).json({
-        message: 'All or some of the field is/are undefined'
-      });
-    }
     if (!Helper.isValidEmail(email)) {
       errorMessage.email = 'Please enter a valid email';
     }

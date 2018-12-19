@@ -2,7 +2,7 @@ const { Pool } = require('pg');
 const dotenv = require('dotenv');
 const configuration = require('./server/config/config');
 
-const env = process.env.Node_ENV || 'test';
+const env = process.env.Node_ENV || 'development';
 const config = configuration[env];
 const connectionString = config.url;
 
@@ -26,7 +26,7 @@ const createTables = () => {
   
   CREATE TABLE IF NOT EXISTS users(
   
-    id uuid PRIMARY KEY,
+    id serial PRIMARY KEY,
   
     fullname VARCHAR(150) NOT NULL,
   
@@ -42,16 +42,14 @@ const createTables = () => {
     
     modified_date TIMESTAMP
   );
-
   CREATE TABLE IF NOT EXISTS entries(
-
-    id uuid PRIMARY KEY,
+    id serial PRIMARY KEY,
   
     title VARCHAR(255) NOT NULL,
   
     entry TEXT NOT NULL,
-  
-    userId uuid REFERENCES users(id) ON DELETE CASCADE,
+
+    userId int REFERENCES users(id) ON DELETE CASCADE,    
   
     created_date TIMESTAMP,
     
