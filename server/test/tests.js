@@ -1,13 +1,18 @@
 import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../app';
+import db from '../models/db';
 
+db.createTables();
 const should = chai.should();
 chai.use(chaiHttp);
-
-describe('Entries', () => {
-  it('should load home page on / GET', (done) => {
-    chai.request(app).get('/')
+let token;
+const wrongToken = 'hdhdnememeelelee';
+describe('All test case for mydiary', () => {
+  it('Test case for loading application home page', done => {
+    chai
+      .request(app)
+      .get('/')
       .set('Content-Type', 'application/json')
       .end((err, res) => {
         res.should.have.status(200);
@@ -15,8 +20,10 @@ describe('Entries', () => {
         done();
       });
   });
-  it('should have status 404 for un-program route / GET', (done) => {
-    chai.request(app).get('/diary')
+  it('Test case for invalid route', done => {
+    chai
+      .request(app)
+      .get('/diary')
       .set('Content-Type', 'application/json')
       .end((err, res) => {
         res.should.have.status(404);
@@ -24,227 +31,491 @@ describe('Entries', () => {
         done();
       });
   });
-  it('should get ALL Entries on api/v1/entries GET', (done) => {
-    chai.request(app)
-      .get('/api/v1/entries')
-      .end((err, res) => {
-        res.should.have.status(200);
-        res.body.should.be.a('object');
-        done();
-      });
-  });
-  it('should get a specific Entry on api/v1/entries/2 GET', (done) => {
-    chai.request(app)
-      .get('/api/v1/entries/2')
-      .end((err, res) => {
-        res.should.have.status(200);
-        res.body.should.be.a('object');
-        done();
-      });
-  });
-  it('should fail for wrong specify  Entry id on api/v1/entries/5 GET', (done) => {
-    chai.request(app)
-      .get('/api/v1/entries/10')
-      .end((err, res) => {
-        res.should.have.status(404);
-        res.body.should.have.property('status');
-        res.body.should.have.property('message');
-        res.body.status.should.equal('fail');
-        done();
-      });
-  });
-  it('should not post with out title field on api/v1/entries POST', (done) => {
-    chai.request(app)
-      .post('/api/v1/entries')
+  it('Valid credential SignUp user and return `201`', done => {
+    chai
+      .request(app)
+      .post('/api/v1/auth/signup/')
       .send({
-        date: '2018-07-22',
-        entry: 'Most challenging learning experience'
+        fullname: 'Jonathan Williams',
+        email: 'joshua@gmail.com',
+        password: 'password'
       })
-      .end((err, res) => {
-        res.should.have.status(400);
-        done();
-      });
-  });
-  it('should not post with out date field on api/v1/entries POST', (done) => {
-    chai.request(app)
-      .post('/api/v1/entries')
-      .send({
-        title: 'Bootcamp',
-        entry: 'Most challenging learning experience'
-      })
-      .end((err, res) => {
-        res.should.have.status(400);
-        done();
-      });
-  });
-  it('should not post with empty date field on api/v1/entries POST', (done) => {
-    chai.request(app)
-      .post('/api/v1/entries')
-      .send({
-        date: '',
-        title: 'Bootcamp',
-        entry: 'Most challenging learning experience'
-      })
-      .end((err, res) => {
-        res.should.have.status(400);
-        done();
-      });
-  });
-  it('should not post with out entry field on api/v1/entries POST', (done) => {
-    chai.request(app)
-      .post('/api/v1/entries')
-      .send({
-        date: '2018-07-22',
-        title: 'Bootcamp'
-      })
-      .end((err, res) => {
-        res.should.have.status(400);
-        done();
-      });
-  });
-  it('should post with complete entry fields on api/v1/entries POST', (done) => {
-    chai.request(app)
-      .post('/api/v1/entries')
-      .send({
-        title: 'Bootcamp cycle 34',
-        date: '2018-07-22',
-        entry: 'My most challenging learning experience...My most challenging learning experience...'
-      })
+
       .end((err, res) => {
         res.should.have.status(201);
-        res.body.should.have.property('status');
-        res.body.should.have.property('message');
-        res.body.status.should.equal('success');
+        res.body.status.should.equal('Success');
+        res.body.message.should.equal('Sign up Sucessfully');
         done();
       });
   });
-  it('should not post if entry length is less 25 characters long on api/v1/entries POST', (done) => {
-    chai.request(app)
-      .post('/api/v1/entries')
+  it('SignUp: user already exist return`409`', done => {
+    chai
+      .request(app)
+      .post('/api/v1/auth/signup/')
       .send({
-        title: 'Bootcamp cycle 34',
-        date: '2018-07-22',
+        fullname: 'Jonathan Williams',
+        email: 'joshua@gmail.com',
+        password: 'password'
+      })
+      .end((err, res) => {
+        res.should.have.status(409);
+        res.body.status.should.equal('Failed');
+        res.body.message.should.equal('User with the given EMAIL already exist');
+        done();
+      });
+  });
+  it('SignUp: fullname, email & password undefined return`400`', done => {
+    chai
+      .request(app)
+      .post('/api/v1/auth/signup/')
+      .send({})
+      .end((err, res) => {
+        res.should.have.status(400);
+        done();
+      });
+  });
+  it('SignUp: email & password undefined return`400`', done => {
+    chai
+      .request(app)
+      .post('/api/v1/auth/signup/')
+      .send({
+        fullname: 'Jonathan Williams'
+      })
+      .end((err, res) => {
+        res.should.have.status(400);
+        done();
+      });
+  });
+  it('SignUp: password undefined return`400`', done => {
+    chai
+      .request(app)
+      .post('/api/v1/auth/signup/')
+      .send({
+        fullname: 'Jonathan Williams',
+        email: 'joshua@gmail.com'
+      })
+      .end((err, res) => {
+        res.should.have.status(400);
+        done();
+      });
+  });
+  it('SignUp: empty fullname, email & password return`400`', done => {
+    chai
+      .request(app)
+      .post('/api/v1/auth/signup/')
+      .send({
+        fullname: '',
+        email: '',
+        password: ''
+      })
+      .end((err, res) => {
+        res.should.have.status(400);
+        done();
+      });
+  });
+  it('SignUp: Invalid fullname length return`400`', done => {
+    chai
+      .request(app)
+      .post('/api/v1/auth/signup/')
+      .send({
+        fullname: 'jj',
+        email: 'j@gmail.com',
+        password: 'password'
+      })
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.fullname.should.equal('Fullname must not be less than 5 characters or above 20');
+        done();
+      });
+  });
+  it('SignUp: Invalid email address return`400`', done => {
+    chai
+      .request(app)
+      .post('/api/v1/auth/signup/')
+      .send({
+        fullname: 'jonathan',
+        email: 'gmail.com',
+        password: 'password'
+      })
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.email.should.equal('Please enter a valid email');
+        done();
+      });
+  });
+  it('SignUp: Invalid password length return`400`', done => {
+    chai
+      .request(app)
+      .post('/api/v1/auth/signup/')
+      .send({
+        fullname: 'James Bowen',
+        email: 'bowengmail.com',
+        password: 'p'
+      })
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.password.should.equal('password must not be less than 7 characters or above 10');
+        done();
+      });
+  });
+  it('SignIn: Invalid email address return `400`', done => {
+    chai
+      .request(app)
+      .post('/api/v1/auth/signin')
+      .send({
+        email: 'gmail.com',
+        password: 'password'
+      })
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.email.should.equal('Please enter a valid email');
+        done();
+      });
+  });
+  it('SignIn: invalid password length return `400`', done => {
+    chai
+      .request(app)
+      .post('/api/v1/auth/signin')
+      .send({
+        email: 'joshua@gmail.com',
+        password: 'p'
+      })
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.password.should.equal('Please enter a valid password');
+        done();
+      });
+  });
+  it('SignIn: invalid credential return `401`', done => {
+    chai
+      .request(app)
+      .post('/api/v1/auth/signin')
+      .send({
+        email: 'invalid@gmail.com',
+        password: 'password'
+      })
+      .end((err, res) => {
+        res.should.have.status(401);
+        res.body.status.should.equal('Fail');
+        res.body.message.should.equal('The credentials you provided is incorrect');
+        done();
+      });
+  });
+  it('Valid credential SignIn return `200`', done => {
+    chai
+      .request(app)
+      .post('/api/v1/auth/signin')
+      .send({
+        email: 'joshua@gmail.com',
+        password: 'password'
+      })
+      .end((err, res) => {
+        token = res.body.token;
+        res.should.have.status(200);
+        res.body.status.should.equal('Success');
+        res.body.message.should.equal('Sucessful login');
+        done();
+      });
+  });
+  it('SignIn: invalid token return `500`', done => {
+    chai
+      .request(app)
+      .post('/api/v1/auth/signin')
+      .send({
+        email: 'joshua@gmail.com',
+        password: 'password'
+      })
+      .end((err, res) => {
+        token = res.body.token;
+        res.should.have.status(200);
+        res.body.status.should.equal('Success');
+        res.body.message.should.equal('Sucessful login');
+        done();
+      });
+  });
+  it('Entries: title & entry undefined return`400`', done => {
+    chai
+      .request(app)
+      .post('/api/v1/entries')
+      .set('x-access-token', token)
+      .send({})
+      .end((err, res) => {
+        res.should.have.status(400);
+        done();
+      });
+  });
+  it('Entries: invalid title length return`400`', done => {
+    chai
+      .request(app)
+      .post('/api/v1/entries')
+      .set('x-access-token', token)
+      .send({
+        title: 'hi',
+        entry: 'My diary bootcamp project'
+      })
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.title.should.equal('Title Maximum character 30 and minmum 10');
+        done();
+      });
+  });
+  it('Entries: title undefined return`400`', done => {
+    chai
+      .request(app)
+      .post('/api/v1/entries')
+      .set('x-access-token', token)
+      .send({
+        entry: 'My diary bootcamp project'
+      })
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.title.should.equal('Title undefined. Title field is required');
+        done();
+      });
+  });
+  it('Entries: entry undefined return`400`', done => {
+    chai
+      .request(app)
+      .post('/api/v1/entries')
+      .set('x-access-token', token)
+      .send({
+        title: 'My Dairy project'
+      })
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.entry.should.equal('Entry undefined. Entry field is required');
+        done();
+      });
+  });
+  it('Entries: invalid entry length return`400`', done => {
+    chai
+      .request(app)
+      .post('/api/v1/entries')
+      .set('x-access-token', token)
+      .send({
+        title: 'My Dairy project',
         entry: 'Bootcamp'
       })
       .end((err, res) => {
         res.should.have.status(400);
+        res.body.entry.should.equal('Entry minimum character 10 and maximum  1000');
         done();
       });
   });
-  it('should not post if entry title is less 15 characters long on api/v1/entries POST', (done) => {
-    chai.request(app)
+  it('Entries: invalid token return`401`', done => {
+    chai
+      .request(app)
       .post('/api/v1/entries')
+      .set('x-access-token', wrongToken)
       .send({
-        title: 'Boot',
-        date: '2018-07-22',
-        entry: 'My most challenging learning experience. Bootcamp cycle 34'
+        title: 'My Dairy project',
+        entry: 'Andela Bootcamp Camp Project'
       })
+      .end((err, res) => {
+        res.should.have.status(401);
+        done();
+      });
+  });
+  it('Entries: add entry for valid input and return`201`', done => {
+    chai
+      .request(app)
+      .post('/api/v1/entries')
+      .set('x-access-token', token)
+      .send({
+        title: 'My Dairy project',
+        entry: 'Andela Bootcamp Camp Project'
+      })
+      .end((err, res) => {
+        res.should.have.status(201);
+        res.body.status.should.equal('Success');
+        res.body.message.should.equal('entry created successfully');
+        done();
+      });
+  });
+  //Update entry
+  it('Update Entry: title and entry undefined return`400`', done => {
+    chai
+      .request(app)
+      .put('/api/v1/entries/1')
+      .set('x-access-token', token)
+      .send({})
       .end((err, res) => {
         res.should.have.status(400);
         done();
       });
   });
-  // Update entry
-  it('should fail for wrong specify  Entry id on api/v1/entries/5 PUT', (done) => {
-    chai.request(app)
-      .put('/api/v1/entries/5')
+  it('Update Entry: invalid title length return`400`', done => {
+    chai
+      .request(app)
+      .put('/api/v1/entries/1')
+      .set('x-access-token', token)
       .send({
-        title: 'Bootcamp cycle 34',
-        date: '2018-07-22',
-        entry: 'My most challenging learning experience...My most challenging learning experience...'
+        title: 'hi',
+        entry: 'My diary bootcamp project'
       })
       .end((err, res) => {
         res.should.have.status(400);
-        res.body.should.have.property('status');
-        res.body.should.have.property('message');
-        res.body.status.should.equal('fail');
+        res.body.title.should.equal('Title Maximum character 30 and minmum 10');
         done();
       });
   });
-  it('should not update with out title field on api/v1/entries/id PUT', (done) => {
-    chai.request(app)
-      .put('/api/v1/entries/2')
+  it('Update Entry: title undefined return`400`', done => {
+    chai
+      .request(app)
+      .put('/api/v1/entries/1')
+      .set('x-access-token', token)
       .send({
-        date: '2018-07-22',
-        entry: 'Most challenging learning experience'
+        entry: 'My diary bootcamp project'
       })
       .end((err, res) => {
         res.should.have.status(400);
+        res.body.title.should.equal('Title undefined. Title field is required');
         done();
       });
   });
-  it('should not update with out date field on api/v1/entries/id PUT', (done) => {
-    chai.request(app)
-      .put('/api/v1/entries/2')
+  it('Update Entry: entry undefined return`400`', done => {
+    chai
+      .request(app)
+      .put('/api/v1/entries/1')
+      .set('x-access-token', token)
       .send({
-        title: 'Bootcamp',
-        entry: 'Most challenging learning experience'
+        title: 'My Dairy project'
       })
       .end((err, res) => {
         res.should.have.status(400);
+        res.body.entry.should.equal('Entry undefined. Entry field is required');
         done();
       });
   });
-  it('should not update with empty date field on api/v1/entries/id PUT', (done) => {
-    chai.request(app)
-      .put('/api/v1/entries/2')
+  it('Update Entry: invalid entry length return`400`', done => {
+    chai
+      .request(app)
+      .put('/api/v1/entries/1')
+      .set('x-access-token', token)
       .send({
-        date: '',
-        title: 'Bootcamp',
-        entry: 'Most challenging learning experience'
+        title: 'My Dairy project',
+        entry: 'Bootcamp'
       })
       .end((err, res) => {
         res.should.have.status(400);
+        res.body.entry.should.equal('Entry minimum character 10 and maximum  1000');
         done();
       });
   });
-  it('should not update with out an entry field on api/v1/entries/id PUT', (done) => {
-    chai.request(app)
-      .put('/api/v1/entries/2')
+  it('Update entry: invalid token return`401`', done => {
+    chai
+      .request(app)
+      .put('/api/v1/entries/1')
+      .set('x-access-token', wrongToken)
       .send({
-        date: '2018-07-22',
-        title: 'Bootcamp'
+        title: 'My Dairy project',
+        entry: 'Andela Bootcamp Camp Project'
       })
       .end((err, res) => {
-        res.should.have.status(400);
+        res.should.have.status(401);
         done();
       });
   });
-  it('should update with complete entry fields and valid id', (done) => {
-    chai.request(app)
-      .put('/api/v1/entries/2')
+  it('Update Entry: valid input, update entry and return`200`', done => {
+    chai
+      .request(app)
+      .put('/api/v1/entries/1')
+      .set('x-access-token', token)
       .send({
-        title: 'Bootcamp cycle 34',
-        date: '2018-07-22',
-        entry: 'My most challenging learning experience...My most challenging learning experience...'
+        title: 'My Dairy project',
+        entry: 'Andela Bootcamp Camp Project'
       })
       .end((err, res) => {
         res.should.have.status(200);
-        res.body.should.have.property('status');
-        res.body.should.have.property('message');
-        res.body.status.should.equal('success');
         done();
       });
   });
-  it('should fail for wrong specify  Entry id on api/v1/entries/5 DELETE', (done) => {
-    chai.request(app)
-      .delete('/api/v1/entries/5')
+  it('Entries: get ALL entries missing token return 401', done => {
+    chai
+      .request(app)
+      .get('/api/v1/entries')
       .end((err, res) => {
-        res.should.have.status(400);
-        res.body.should.have.property('status');
-        res.body.should.have.property('message');
-        res.body.status.should.equal('fail');
+        res.should.have.status(401);
         done();
       });
   });
-  it('should delete with right entry id field on api/v1/entries/2 DELETE', (done) => {
-    chai.request(app)
-      .delete('/api/v1/entries/2')
+  it('Entries: get ALL Entries with valid token return 200', done => {
+    chai
+      .request(app)
+      .get('/api/v1/entries')
+      .set('x-access-token', token)
       .end((err, res) => {
         res.should.have.status(200);
-        res.body.should.have.property('status');
-        res.body.should.have.property('message');
-        res.body.status.should.equal('success');
+        res.body.should.be.a('object');
+        done();
+      });
+  });
+  it('Entries: get ALL Entries. Invalid token return 200', done => {
+    chai
+      .request(app)
+      .get('/api/v1/entries')
+      .set('x-access-token', wrongToken)
+      .end((err, res) => {
+        res.should.have.status(401);
+        done();
+      });
+  });
+  it('Entries: get single entry with valid token return 200', done => {
+    chai
+      .request(app)
+      .get('/api/v1/entries/1')
+      .set('x-access-token', token)
+      .end((err, res) => {
+        res.should.have.status(200);
+        done();
+      });
+  });
+  it('Entries: get single entry with invalid token return 401', done => {
+    chai
+      .request(app)
+      .get('/api/v1/entries/1')
+      .set('x-access-token', wrongToken)
+      .end((err, res) => {
+        res.should.have.status(401);
+        done();
+      });
+  });
+  it('Entries: get single entry with missing token return 500', done => {
+    chai
+      .request(app)
+      .get('/api/v1/entries/1')
+      .end((err, res) => {
+        res.should.have.status(401);
+        done();
+      });
+  });
+  it('Entries: get single entry with invalid id return 404', done => {
+    chai
+      .request(app)
+      .get('/api/v1/entries/3')
+      .set('x-access-token', token)
+      .end((err, res) => {
+        res.should.have.status(404);
+        done();
+      });
+  });
+  it('Entries: delete entry with invalid id return 404', done => {
+    chai
+      .request(app)
+      .delete('/api/v1/entries/3')
+      .set('x-access-token', token)
+      .end((err, res) => {
+        res.should.have.status(404);
+        done();
+      });
+  });
+  it('Entries: delete entry return 200', done => {
+    chai
+      .request(app)
+      .delete('/api/v1/entries/1')
+      .set('x-access-token', token)
+      .end((err, res) => {
+        res.should.have.status(200);
         done();
       });
   });

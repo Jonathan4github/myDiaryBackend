@@ -1,0 +1,166 @@
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+body {
+  font-family: "Merriweather", serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+.container {
+  text-align: center;
+  position: relative;
+  height: 100vh;
+  padding-bottom: 80px;
+  background: #009688 center top no-repeat;
+  background-size: cover;
+  color: #fff;
+  overflow: hidden;
+}
+.container h1 {
+  margin: 30px 0 20px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+}
+.container h1 span {
+  font: 300 30px/1 "Dancing Script", cursive;
+  display: block;
+}
+#emailError,
+#errorMessage {
+  color: red;
+}
+@media only screen and (min-width: 37.5em) {
+  .container h1 {
+    font-size: 50px;
+  }
+  .container h1 span {
+    font-size: 76px;
+  }
+  .container h2 {
+    width: 76%;
+    font-size: 18px;
+  }
+}
+
+.btn {
+  color: #fff;
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+  width: 200px;
+  max-width: 300px;
+  padding: 12px 18px;
+  border-radius: 100px;
+  background: #26a69a;
+  border: none;
+}
+.btn:hover {
+  background: #009688;
+  cursor: pointer;
+}
+.footer {
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  background: #3b3b58;
+
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+.footer p {
+  opacity: 0.65;
+}
+
+/* form styling */
+.form-container {
+  padding: 16px;
+  background: #fff;
+  color: black;
+  text-align: left;
+  width: 30%;
+  margin: 0 auto;
+  border-radius: 5px;
+}
+
+/* Full-width input fields */
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Add a blue text color to links */
+a {
+  color: dodgerblue;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+
+nav {
+  text-align: right;
+  padding: 0px 20px 0 0;
+}
+ul {
+  list-style-type: none;
+}
+nav ul li {
+  font-family: "Alegreya Sans";
+  font-size: 130%;
+  display: inline-block;
+  padding: 5px;
+}
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  padding-bottom: 10px;
+}
+nav ul li a:hover {
+  border-bottom: 3px solid #ffab00;
+}
+
+.logo {
+  float: left;
+  color: #fff;
+  font-size: 22px;
+  margin-bottom: 5px;
+  border: solid 1px #fff;
+  padding: 4px;
+  font-weight: 400;
+  margin-left: 20px;
+}
+@media screen and (max-width: 660px) {
+  .form-container {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .form-container {
+    width: 70%;
+  }
+}

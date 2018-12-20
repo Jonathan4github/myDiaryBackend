@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>myDiary</title>
+    <link rel="stylesheet" type="text/css" href="public/css/style/style.css" />
+  </head>
+  <body>
+    <section class="container">
+      <nav>
+        <a class="logo" href="index.html">MDiary</a>
+        <ul>
+          <li><a href="signup.html" id="registerBtn"></a></li>
+        </ul>
+      </nav>
+      <h1><span>Diary</span>Sign in</h1>
+      <form id="signIn">
+        <div class="form-container">
+          <label for="email"><b>Email</b></label> <input
+          type="text"
+          placeholder="Enter Email"
+          name="email"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+          id="email"
+          title="Enter a valid email"
+          required
+        />
+          <label for="psw"><b>Password</b></label>
+          <input
+            type="password"
+            placeholder="Enter Password"
+            name="psw"
+            id="password"
+            required
+            pattern=".{6,10}"
+            title="password should be 7 to 10 characters"
+            required
+          /> <span id="errorMessage"></span
+          ><br />
+          <button class="btn" type="submit" onClick="">Sign In</button>
+          <hr />
+          don't have an Account ? <a href="signup.html">Sign Up</a>
+        </div>
+      </form>
+    </section>
+
+    <div class="footer"><p>&copy; 2018 Andela Bootcamp Project</p></div>
+    <script src="public/js/signin.js"></script>
+  </body>
+</html>

@@ -1,7 +1,7 @@
 import validator from 'validator';
 
 export default function (req, res, next) {
-  const { title, date, entry } = req.body,
+  const { title, entry } = req.body,
     errorsMessage = {};
 
     // Catch errors for title entry field
@@ -10,12 +10,7 @@ export default function (req, res, next) {
   } else if (!(validator.isLength(title, { min: 10, max: 30 }))) {
     errorsMessage.title = 'Title Maximum character 30 and minmum 10';
   }
-  // Catch errors for date entry field
-  if ((date === undefined)) {
-    errorsMessage.date = 'Date undefined. Date field is required DD-MM-YYYY';
-  } else if (!(validator.isLength(date, { min: 10, max: 10 }))) {
-    errorsMessage.date = 'Date format DD-MM-YYYY or DD/MM/YYYY';
-  }
+ 
   // Catch errors entry field
   if ((entry === undefined)) {
     errorsMessage.entry = 'Entry undefined. Entry field is required';
