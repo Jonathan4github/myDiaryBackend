@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="public/css/sidebar.css" type="text/css" />
     <script src="public/js/font-awesome.js"></script>
   </head>
-  <body>
+  <body onload="getUserinfo()">
     <!-- Vertical sidebar -->
     <div class="sidebar_menu" id="mySidenav">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
@@ -22,7 +22,7 @@
       </center>
       <div class="nav_image">
         <img src="public/img/passport.jpg" /><br />
-        <span id="userName"><strong>Hi Preshy</strong></span>
+        <span id="user-name"><strong>Hi</strong></span>
       </div>
 
       <ul class="navigation_section">
@@ -32,7 +32,7 @@
         <a href="entries.html">
           <li class="navigation_item"><i class="fa fa-heart navigation_item-i"></i>Entries</li>
         </a>
-        <a href="">
+        <a href="account.html">
           <li class="navigation_item"><i class="fa fa-user navigation_item-i"></i>Account</li>
         </a>
         <li>

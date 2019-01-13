@@ -1,5 +1,7 @@
 const entryId = localStorage.getItem('entryId');
 const token = localStorage.getItem('token');
+const fullname = localStorage.getItem('fullname');
+
 if (!token) {
   window.location.href = './signin.html';
 }
@@ -18,6 +20,7 @@ const getEntry = () => {
       document.getElementById('title').value = entry[0].title;
       document.getElementById('entry').value = entry[0].entry;
       document.getElementById('date').value = entry[0].created_date;
+      document.getElementById('user-name').innerHTML = fullname.split(' ')[0];
     });
 };
 
@@ -55,5 +58,9 @@ const enableEdit = () => {
   document.getElementById('date').setAttribute('type', 'date');
   document.getElementById('date').removeAttribute('disabled');
   document.getElementById('entry').removeAttribute('readonly');
+};
+
+const cancelEdit = () => {
+  window.location.href = './detail.html';
 };
 document.getElementById('modify-entry').addEventListener('submit', modifyEntry);

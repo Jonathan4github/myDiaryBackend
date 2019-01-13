@@ -1,4 +1,5 @@
 const token = localStorage.getItem('token');
+const fullname = localStorage.getItem('fullname');
 if (!token) {
   window.location.href = './signin.html';
 }
@@ -28,6 +29,10 @@ const compose = event => {
     .catch(err => {
       console.log(err);
     });
+};
+
+const getUserinfo = () => {
+  document.getElementById('user-name').innerHTML = fullname.split(' ')[0];
 };
 
 document.getElementById('compose').addEventListener('submit', compose);
