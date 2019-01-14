@@ -4,11 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>myDiary | Entries</title>
+    <title>myDiary | Account</title>
     <link rel="stylesheet" href="public/css/sidebar.css" type="text/css" />
     <script src="public/js/font-awesome.js"></script>
   </head>
-  <body>
+  <body onload="getUserAccount()">
     <!-- Vertical sidebar -->
     <div class="sidebar_menu" id="mySidenav">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
@@ -21,10 +21,17 @@
         <h2 class="logo_title">Write Any Where Any Time</h2>
       </center>
       <div class="nav_image">
-        <img src="public/img/passport.jpg" /><br />
-        <span id="userName"><strong>Hi Preshy</strong></span
-        ><br />
-        <input type="file" value="Save" class="inputfile" />
+        <img id="passport" class="avater" /><br />
+        <span id="user-name"><strong>Hi World</strong></span> <br /><br />
+        <div class="hide-btn" id="hide-upload-btn">
+          <p>
+            <form id="update-image">
+              <label class="upload-btn">
+                <input type="file" value="Save" class="inputfile" id="image" name ="image"/> Upload image
+              </label>
+            </form>
+          </p>
+        </div>
       </div>
 
       <ul class="navigation_section">
@@ -34,7 +41,7 @@
         <a href="entries.html">
           <li class="navigation_item"><i class="fa fa-heart navigation_item-i"></i>Entries</li>
         </a>
-        <a href="">
+        <a href="account.html">
           <li class="navigation_item"><i class="fa fa-user navigation_item-i"></i>Account</li>
         </a>
         <li>
@@ -47,31 +54,38 @@
     <main>
       <section class="container" id="container">
         <div class="mobile-nav"><span class="mobile_menu_icon" onclick="openNav()">&#9776;</span></div>
-        <nav class="top-menu"><i class="fa fa-plus"></i> New Entry</nav>
+        <nav class="top-menu">
+          <i class="fa fa-user"></i> Account |
+          <button class="icon-btn" onclick="enableEdit()"><i class="fa fa-edit"></i> Edit</button>
+        </nav>
 
         <div class="form-container">
-          <form id="compose">
+          <form id="account">
             <label for="title">Fullname</label>
-            <input
-              type="text"
-              id="title"
-              name="title"
-              placeholder="Write entry title..."
-              pattern=".{10,150}"
-              title="Title should be 10 to 30 characters"
-            />
+            <input type="text" id="user-fullname" name="title" pattern=".{5,20}" disabled />
 
             <label for="email">Email</label>
-            <input
-              type="text"
-              id="email"
-              name="email"
-              placeholder="email."
-              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-            />
+            <input type="text" id="user-email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" disabled />
 
             <label for="reminder">Reminder setting [days]</label>
-            <input type="text" name="reminder" pattern="[0-9]{1,2}" /> <input type="submit" value="Save" />
+            <input type="text" name="reminder" pattern="[0-9]{1,2}" id="reminder" disabled />
+
+            <label for="psw"><b>Password</b></label>
+            <input
+              type="password"
+              placeholder="Enter old or new Password to update"
+              name="psw"
+              id="password"
+              required
+              pattern=".{6,10}"
+              title="password should be 7 to 10 characters"
+              required
+              disabled
+            />
+            <div class="inline-btn hide-btn" id="hide-update-btn">
+              <input type="submit" value="Update" />
+              <input type="button" class="cancel-btn" value="Cancel" onclick="cancelEdit()" />
+            </div>
           </form>
         </div>
       </section>
@@ -84,3 +98,4 @@
 <script src="public/js/myDiary.js"></script>
 <script src="public/js/compose.js"></script>
 <script src="public/js/logout.js"></script>
+<script src="public/js/account.js"></script>

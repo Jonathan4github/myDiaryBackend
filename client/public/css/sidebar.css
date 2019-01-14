@@ -125,6 +125,10 @@ body {
   color: #d8d8d8;
 }
 
+.inline-btn {
+  display: inline-block;
+  margin: 5px;
+}
 .mobile_menu_icon {
   display: none;
   font-size: 30px;
@@ -153,6 +157,7 @@ body {
 /* Style inputs with type="text", select elements and textareas */
 input[type='text'],
 [type='date'],
+[type='password'],
 select,
 textarea {
   width: 98%;
@@ -167,13 +172,15 @@ textarea {
 
 input[type='text']:focus,
 input[type='date']:focus,
+input[type='password']:focus,
 textarea:focus {
   background-color: #ddd;
   outline: none;
 }
 
 /* Style the submit button with a specific background color etc */
-input[type='submit'] {
+input[type='submit'],
+.cancel-btn {
   background-color: #009688;
   color: white;
   padding: 12px 20px;
@@ -197,13 +204,19 @@ input[type='submit']:hover {
 .view-button:hover {
   color: greenyellow;
 }
-.inputfile {
-  width: 0.1px;
-  height: 0.1px;
-  opacity: 0;
-  overflow: hidden;
-  position: absolute;
-  z-index: -1;
+
+input[type='file'] {
+  display: none;
+}
+
+.upload-btn {
+  border: 1px solid whitesmoke;
+  color: white;
+  background-color: transparent;
+  padding: 5px 15px;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
 }
 
 /* Add a background color and some padding around the form */
@@ -213,8 +226,12 @@ input[type='submit']:hover {
   color: #fff;
   padding: 20px;
 }
-#hide-update-btn {
+.hide-btn {
   display: none;
+}
+.avater {
+  height: 128px;
+  width: 128px;
 }
 @media screen and (max-width: 550px) {
   /* disable scroll */

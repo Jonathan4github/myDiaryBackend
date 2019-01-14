@@ -22,7 +22,7 @@
       </center>
       <div class="nav_image">
         <img src="public/img/passport.jpg" /><br />
-        <span id="userName"><strong>Hi Preshy</strong></span>
+        <span id="user-name"><strong>Hi Preshy</strong></span>
       </div>
 
       <ul class="navigation_section">
@@ -32,7 +32,7 @@
         <a href="entries.html">
           <li class="navigation_item"><i class="fa fa-heart navigation_item-i"></i>Entries</li>
         </a>
-        <a href="">
+        <a href="account.html">
           <li class="navigation_item"><i class="fa fa-user navigation_item-i"></i>Account</li>
         </a>
       </ul>
@@ -58,7 +58,10 @@
 
             <label for="entry">Entry</label> <textarea id="entry" name="entry" style="height:200px" readonly></textarea>
 
-            <div id="hide-update-btn"><input type="submit" value="Save" /></div>
+            <div id="hide-update-btn">
+              <input type="submit" value="Save" />
+              <input type="button" class="cancel-btn" onclick="cancelEdit()" value="Cancel" />
+            </div>
           </form>
         </div>
       </section>
