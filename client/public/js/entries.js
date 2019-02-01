@@ -1,5 +1,6 @@
 const token = localStorage.getItem('token');
 const fullname = localStorage.getItem('fullname');
+const image = localStorage.getItem('image');
 if (!token) {
   window.location.href = './signin.html';
 }
@@ -31,6 +32,7 @@ const getAllEntry = () => {
       });
       document.getElementById('tbody').innerHTML = userEntry;
       document.getElementById('user-name').innerHTML = fullname.split(' ')[0];
+      document.getElementById('passport').src = image;
     });
 };
 

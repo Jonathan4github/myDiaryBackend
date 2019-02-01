@@ -1,5 +1,6 @@
 const token = localStorage.getItem('token');
 const fullname = localStorage.getItem('fullname');
+const image = localStorage.getItem('image');
 if (!token) {
   window.location.href = './signin.html';
 }
@@ -33,6 +34,7 @@ const compose = event => {
 
 const getUserinfo = () => {
   document.getElementById('user-name').innerHTML = fullname.split(' ')[0];
+  document.getElementById('passport').src = image;
 };
 
 document.getElementById('compose').addEventListener('submit', compose);

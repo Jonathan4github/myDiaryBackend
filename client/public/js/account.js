@@ -70,7 +70,7 @@ const updateImage = e => {
   const imageInput = document.getElementById('image');
   const formData = new FormData();
   formData.append('image', imageInput.files[0]);
-
+  document.getElementById('myModal').style.cssText = 'display:block; position:fixed'; /* Stay in place */
   const option = {
     method: 'PUT',
     headers: {

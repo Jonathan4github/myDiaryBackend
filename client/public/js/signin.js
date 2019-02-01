@@ -20,6 +20,7 @@ const signIn = event => {
       if (data.status === 'Success') {
         window.localStorage.setItem('token', data.token);
         window.localStorage.setItem('fullname', data.data.fullname);
+        window.localStorage.setItem('image', data.data.image);
         window.location.replace('./entries.html');
       } else if (data.message == 'The credentials you provided is incorrect') {
         invalidUser(data.message);
