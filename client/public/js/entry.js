@@ -43,7 +43,10 @@ const modifyEntry = event => {
     .then(res => res.json())
     .then(data => {
       if (data.status === 'Success') {
-        window.location.replace('./entries.html');
+        document.getElementById('myModal').style.cssText = 'display:block; position:fixed';
+        setTimeout(() => {
+          window.location.reload();
+        }, 2300);
       }
     })
     .catch(err => {

@@ -1,5 +1,6 @@
 const token = localStorage.getItem('token');
 const fullname = localStorage.getItem('fullname');
+const image = localStorage.getItem('image');
 if (!token) {
   window.location.href = './signin.html';
 }
@@ -19,11 +20,15 @@ const compose = event => {
     },
     body: JSON.stringify(post)
   };
+  const saveBtn = document.getElementById('submit');
   fetch('http://localhost:3000/api/v1/entries/', params)
     .then(res => res.json())
     .then(data => {
       if (data.status === 'Success') {
-        window.location.replace('./entries.html');
+        document.getElementById('myModal').style.cssText = 'display:block; position:fixed';
+        setTimeout(() => {
+          window.location.replace('./entries.html');
+        }, 2000);
       }
     })
     .catch(err => {
@@ -33,6 +38,7 @@ const compose = event => {
 
 const getUserinfo = () => {
   document.getElementById('user-name').innerHTML = fullname.split(' ')[0];
+  document.getElementById('passport').src = image;
 };
 
 document.getElementById('compose').addEventListener('submit', compose);

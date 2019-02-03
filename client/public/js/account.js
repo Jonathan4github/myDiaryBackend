@@ -42,7 +42,10 @@ const updateUserAccount = () => {
     .then(res => res.json())
     .then(data => {
       if (data.status === 'Success') {
-        window.location.replace('./account.html');
+        document.getElementById('info-modal').style.cssText = 'display:block; position:fixed';
+        setTimeout(() => {
+          window.location.replace('./account.html');
+        }, 2300);
       }
     })
     .catch(err => {
@@ -70,7 +73,7 @@ const updateImage = e => {
   const imageInput = document.getElementById('image');
   const formData = new FormData();
   formData.append('image', imageInput.files[0]);
-
+  document.getElementById('myModal').style.cssText = 'display:block; position:fixed'; /* Stay in place */
   const option = {
     method: 'PUT',
     headers: {

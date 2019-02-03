@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>myDiary | Entries</title>
     <link rel="stylesheet" href="public/css/sidebar.css" type="text/css" />
+    <link rel="stylesheet" href="public/css/userFeedback.css" type="text/css" />
     <script src="public/js/font-awesome.js"></script>
   </head>
   <body onload="getUserinfo()">
@@ -21,7 +22,7 @@
         <h2 class="logo_title">Write Any Where Any Time</h2>
       </center>
       <div class="nav_image">
-        <img src="public/img/passport.jpg" /><br />
+        <img src="public/img/passport.jpg" id="passport" class="avater" /><br />
         <span id="user-name"><strong>Hi</strong></span>
       </div>
 
@@ -73,11 +74,15 @@
               title="Entry should be 10 to 1000 characters"
               required
             ></textarea>
-
-            <input type="submit" value="Save" />
+            <input type="submit" value="Save" id="submit" />
           </form>
         </div>
       </section>
+      <div id="myModal" class="loader-box">
+        <div class="info-content">
+          <p><i class="fa fa-check teal"></i> Saved successfully</p>
+        </div>
+      </div>
     </main>
   </body>
 </html>

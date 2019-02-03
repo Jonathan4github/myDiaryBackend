@@ -62,7 +62,8 @@ class UserController {
               data: {
                 id: user.rows[0].id,
                 fullname: user.rows[0].fullname,
-                email: user.rows[0].email
+                email: user.rows[0].email,
+                image: user.rows[0].image
               },
               token
             });

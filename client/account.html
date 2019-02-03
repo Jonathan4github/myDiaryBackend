@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>myDiary | Account</title>
     <link rel="stylesheet" href="public/css/sidebar.css" type="text/css" />
+    <link rel="stylesheet" href="public/css/userFeedback.css" type="text/css" />
     <script src="public/js/font-awesome.js"></script>
   </head>
   <body onload="getUserAccount()">
@@ -21,7 +22,7 @@
         <h2 class="logo_title">Write Any Where Any Time</h2>
       </center>
       <div class="nav_image">
-        <img id="passport" class="avater" /><br />
+        <img id="passport" class="avater" src="public/img/passport.jpg"/><br />
         <span id="user-name"><strong>Hi World</strong></span> <br /><br />
         <div class="hide-btn" id="hide-upload-btn">
           <p>
@@ -67,8 +68,8 @@
             <label for="email">Email</label>
             <input type="text" id="user-email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" disabled />
 
-            <label for="reminder">Reminder setting [days]</label>
-            <input type="text" name="reminder" pattern="[0-9]{1,2}" id="reminder" disabled />
+            <label for="reminder">Reminder setting [days]</label>          
+            <input type="number" name="reminder" min="1" max="31" id="reminder" disabled />
 
             <label for="psw"><b>Password</b></label>
             <input
@@ -90,6 +91,17 @@
         </div>
       </section>
     </main>
+    <div id="info-modal" class="loader-box">
+      <div class="info-content">
+        <p id='info'><i class="fa fa-check teal"></i> Updated successfully</p>
+      </div>
+    </div>
+    <div id="myModal" class="loader-box">
+      <div class="loader-content">
+        <div class="loader" align="center"></div>
+        <p>uploading...</p>
+      </div>
+    </div>
   </body>
 </html>
 
@@ -99,3 +111,4 @@
 <script src="public/js/compose.js"></script>
 <script src="public/js/logout.js"></script>
 <script src="public/js/account.js"></script>
+
