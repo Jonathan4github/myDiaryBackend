@@ -20,11 +20,15 @@ const compose = event => {
     },
     body: JSON.stringify(post)
   };
+  const saveBtn = document.getElementById('submit');
   fetch('http://localhost:3000/api/v1/entries/', params)
     .then(res => res.json())
     .then(data => {
       if (data.status === 'Success') {
-        window.location.replace('./entries.html');
+        document.getElementById('myModal').style.cssText = 'display:block; position:fixed';
+        setTimeout(() => {
+          window.location.replace('./entries.html');
+        }, 2000);
       }
     })
     .catch(err => {

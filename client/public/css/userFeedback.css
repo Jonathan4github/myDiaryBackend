@@ -13,15 +13,25 @@
 }
 
 /* Loader Content/Box */
-.loader-content {
+.loader-content,
+.info-content,
+.confirm-box {
   background-color: #fefefe;
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #888;
-  width: 85px; /* Could be more or less, depending on screen size */
+  width: 85px;
   border-radius: 20px;
 }
-
+.loader-content {
+  width: 85px;
+}
+.info-content {
+  width: 170px;
+}
+.confirm-box {
+  width: 310px;
+}
 /* The Close Button */
 .loader {
   border: 8px solid #f3f3f3;
@@ -32,6 +42,28 @@
   height: 60px;
   -webkit-animation: spin 2s linear infinite;
   animation: spin 2s linear infinite;
+}
+.teal {
+  color: #009688;
+}
+.modal-footer {
+  text-align: center;
+}
+.btn {
+  margin-top: 5px;
+  background: #009688;
+  color: #fff;
+  width: 70px;
+  text-align: center;
+  border: none;
+  border-radius: 3px;
+  padding: 4px;
+}
+.btn:hover {
+  background-color: #fff;
+  cursor: pointer;
+  border: solid 1px #009688;
+  color: #009688;
 }
 
 @-webkit-keyframes spin {

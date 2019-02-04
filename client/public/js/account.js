@@ -42,7 +42,10 @@ const updateUserAccount = () => {
     .then(res => res.json())
     .then(data => {
       if (data.status === 'Success') {
-        window.location.replace('./account.html');
+        document.getElementById('info-modal').style.cssText = 'display:block; position:fixed';
+        setTimeout(() => {
+          window.location.replace('./account.html');
+        }, 2300);
       }
     })
     .catch(err => {
