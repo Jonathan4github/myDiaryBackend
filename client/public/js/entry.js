@@ -13,7 +13,7 @@ const getEntry = () => {
       'x-access-token': token
     }
   };
-  fetch(`http://localhost:3000/api/v1/entries/${entryId}`, option)
+  fetch(`https://mydiary-v2.herokuapp.com/api/v1/entries/${entryId}`, option)
     .then(res => res.json())
     .then(data => {
       const entry = data.entries;
@@ -39,7 +39,7 @@ const modifyEntry = event => {
     },
     body: JSON.stringify(post)
   };
-  fetch(`http://localhost:3000/api/v1/entries/${entryId}`, params)
+  fetch(`https://mydiary-v2.herokuapp.com/api/v1/entries/${entryId}`, params)
     .then(res => res.json())
     .then(data => {
       if (data.status === 'Success') {
