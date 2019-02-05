@@ -13,7 +13,7 @@ const getAllEntry = () => {
       'x-access-token': token
     }
   };
-  fetch('http://localhost:3000/api/v1/entries', option)
+  fetch('https://mydiary-v2.herokuapp.com/api/v1/entries', option)
     .then(res => res.json())
     .then(data => {
       let userEntry = '';

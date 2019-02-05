@@ -14,7 +14,7 @@ const signup = event => {
     body: JSON.stringify(post)
   };
 
-  fetch('http://localhost:3000/api/v1/auth/signup/', params)
+  fetch('https://mydiary-v2.herokuapp.com/api/v1/auth/signup/', params)
     .then(res => res.json())
     .then(data => {
       if (data.status === 'Success') {
