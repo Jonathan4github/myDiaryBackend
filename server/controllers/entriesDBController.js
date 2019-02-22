@@ -1,7 +1,16 @@
 import db from '../models/diaryDB';
 import moment from 'moment';
 
-function getAllEntry(req, res) {
+/**
+ * Crud controller for entry
+ * 
+ * Function to get User Entries
+ * Authentication Required
+ * @param{request} req
+ * @param{response} res
+ * @return{oject} return entries for user
+ */
+const getAllEntry = (req, res) => {
   db.query('SELECT * FROM entries where userId = $1', [req.user.id], (err, result) => {
     if (err) {
       return res.status(500).json({
@@ -24,7 +33,14 @@ function getAllEntry(req, res) {
   });
 }
 
-function getEntry(req, res) {
+/**
+ * Function for to get User Entry
+ * Authentication Required
+ * @param {request} req 
+ * @param {response} res
+ * @return {object} return entry for user. 
+ */
+const getEntry = (req, res) => {
   const entryId = req.params.entryId;
   const sql = 'SELECT * FROM entries WHERE id = $1 and userId = $2';
   const params = [entryId, req.user.id];
@@ -49,7 +65,14 @@ function getEntry(req, res) {
   });
 }
 
-function addEntry(req, res) {
+/**
+ * Functio for creating User Entry
+ * Authentication Required
+ * @param {request} req 
+ * @param {response} res
+ * @return {object} return add entry for user. 
+ */
+const addEntry = (req, res) => {
   const { title, entry } = req.body;
   const sql = 'INSERT INTO entries(title, entry, userId, created_date, modified_date) VALUES ($1, $2, $3, $4, $5)';
   const params = [title, entry, req.user.id, moment(new Date()), moment(new Date())];
@@ -61,7 +84,14 @@ function addEntry(req, res) {
   });
 }
 
-function updateEntry(req, res) {
+/**
+ * Function for upadating User Entry
+ * Authentication Required
+ * @param {request} req 
+ * @param {response} res 
+ * @return {object} return update entry for user.
+ */
+const updateEntry = (req, res) => {
   const { title, entry } = req.body,
     { entryId } = req.params;
   const sql = 'UPDATE entries SET title = $1, entry = $2, modified_date = $3 WHERE id = $4';
@@ -87,7 +117,13 @@ function updateEntry(req, res) {
   });
 }
 
-function deleteEntry(req, res) {
+/**
+ * Function for deleting User Entry
+ * @param {request} req 
+ * @param {response} res
+ * @return {object} return delete status. 
+ */
+const deleteEntry = (req, res) => {
   const entryId = req.params.entryId;
   const sql = 'DELETE FROM entries WHERE id = $1';
   const params = [entryId];

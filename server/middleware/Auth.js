@@ -2,6 +2,12 @@ import jwt from 'jsonwebtoken';
 import db from '../models/diaryDB';
 
 const Auth = {
+    /**
+     * Method to verify token
+     * @param {request} req
+     * @param {response} res
+     * @param {}
+     */
 
     verifyToken(req, res, next){
         const token = req.headers['x-access-token'];
