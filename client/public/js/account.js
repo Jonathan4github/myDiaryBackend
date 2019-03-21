@@ -10,9 +10,9 @@ const getUserAccount = () => {
       'x-access-token': token
     }
   };
-  fetch(`https://mydiary-v2.herokuapp.com/api/v1/user/account`, option)
+  fetch('http://localhost:3000/api/v1/user/account', option)
     .then(res => res.json())
-    .then(data => {
+    .then((data) => {
       const user = data.account;
       document.getElementById('user-fullname').value = user.fullname;
       document.getElementById('user-email').value = user.email;
@@ -38,17 +38,18 @@ const updateUserAccount = () => {
     },
     body: JSON.stringify(post)
   };
-  fetch(`https://mydiary-v2.herokuapp.com/api/v1/user/account`, option)
+  fetch('http://localhost:3000/api/v1/user/account', option)
     .then(res => res.json())
-    .then(data => {
+    .then((data) => {
       if (data.status === 'Success') {
+        const image = localStorage.getItem('image');
         document.getElementById('info-modal').style.cssText = 'display:block; position:fixed';
         setTimeout(() => {
           window.location.replace('./account.html');
         }, 2300);
       }
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
     });
 };
@@ -66,7 +67,7 @@ const cancelEdit = () => {
   window.location.href = './account.html';
 };
 
-const updateImage = e => {
+const updateImage = (e) => {
   e.preventDefault();
 
   // fetch the 1st file on the node's file list a File object:
@@ -83,7 +84,7 @@ const updateImage = e => {
   };
   fetch('https://mydiary-v2.herokuapp.com/api/v1/user/account/upload', option)
     .then(res => res.json())
-    .then(data => {
+    .then((data) => {
       console.log(data);
       document.getElementById('passport').src = data.imageUrl;
       if (data.status === 'Success') {

@@ -36,7 +36,7 @@ const createTables = () => {
     
     reminder INTEGER  DEFAULT  0,
     
-    image VARCHAR(255),
+    image VARCHAR(255) DEFAULT 'https://via.placeholder.com/150',
     
     created_date TIMESTAMP,
     
@@ -57,7 +57,7 @@ const createTables = () => {
     
      )`;
 
-  db.query(query, err => {
+  db.query(query, (err) => {
     if (err) {
       return err.message;
     }
