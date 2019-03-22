@@ -10,7 +10,7 @@ services:
 before_script:
   - psql -c 'create database myDiaryTest;' -U postgres
 env:
-  - Test_URL=postgres://postgres:Flexin1988@localhost:5432/myDiaryTest
+  - Test_URL=postgres://aubjnoxm:qyIs_1Vo-jC9M-060d0NlZ2Vg5nJvJL4@isilo.db.elephantsql.com:5432/aubjnoxm
 script: npm run test
 
 after_success:
