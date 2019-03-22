@@ -1,72 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>myDiary | Entries</title>
-    <link rel="stylesheet" href="public/css/sidebar.css" type="text/css" />
-    <script src="public/js/font-awesome.js"></script>
-  </head>
-  <body onload="getAllEntry();">
-    <!-- Vertical sidebar -->
-    <div class="sidebar_menu" id="mySidenav">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-      <center>
-        <a href="index.html"
-          ><h1 class="boxed_item"><span class="logo_bold">myDiary</span></h1>
-        </a>
-        <h2 class="logo_title">Write Any Where Any Time</h2>
-      </center>
 
-      <div class="nav_image">
-        <img src="public/img/passport.jpg" id="passport" class="avater" /><br />
-        <span id="user-name"><strong>Hi Preshy</strong></span>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>myDiary | Entries</title>
+  <link rel="stylesheet" href="public/css/sidebar.css" type="text/css" />
+  <script src="public/js/font-awesome.js"></script>
+</head>
+
+<body onload="getAllEntry();">
+  <!-- Vertical sidebar -->
+  <div class="sidebar_menu" id="mySidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <center>
+      <a href="index.html"><h1 class="boxed_item"><span class="logo_bold">myDiary</span></h1>
+      </a>
+      <h2 class="logo_title">Write Any Where Any Time</h2>
+    </center>
+
+    <div class="nav_image">
+      <img id="passport" class="avater" /><br />
+      <span id="user-name"><strong>Hi Preshy</strong></span>
+    </div>
+
+    <ul class="navigation_section">
+      <a href="compose.html">
+        <li class="navigation_item"><i class="fa fa-pen-square navigation_item-i"></i>Compose</li>
+      </a>
+      <a href="entries.html">
+        <li class="navigation_item"><i class="fa fa-heart navigation_item-i"></i>Entries</li>
+      </a>
+      <a href="account.html">
+        <li class="navigation_item"><i class="fa fa-user navigation_item-i"></i>Account</li>
+      </a>
+      <li>
+        <button class="icon-btn" id="logout">
+          <h1 class="boxed_item boxed_item_smaller signup"><i class="fa fa-user"></i> LOGOUT</h1>
+        </button>
+      </li>
+    </ul>
+  </div>
+  <main>
+    <section class="container" id="container">
+      <div class="mobile-nav"><span class="mobile_menu_icon" onclick="openNav()">&#9776;</span></div>
+      <nav class="top-menu" id="total-entries">Total entries: 0</nav>
+      <h3 id="entry-table-heading">Diary Entries</h3>
+      <div class="tbl-header">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Title</th>
+              <th>Entry</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+        </table>
       </div>
 
-      <ul class="navigation_section">
-        <a href="compose.html">
-          <li class="navigation_item"><i class="fa fa-pen-square navigation_item-i"></i>Compose</li>
-        </a>
-        <a href="entries.html">
-          <li class="navigation_item"><i class="fa fa-heart navigation_item-i"></i>Entries</li>
-        </a>
-        <a href="account.html">
-          <li class="navigation_item"><i class="fa fa-user navigation_item-i"></i>Account</li>
-        </a>
-        <li>
-          <button class="icon-btn" id="logout">
-            <h1 class="boxed_item boxed_item_smaller signup"><i class="fa fa-user"></i> LOGOUT</h1>
-          </button>
-        </li>
-      </ul>
-    </div>
-    <main>
-      <section class="container" id="container">
-        <div class="mobile-nav"><span class="mobile_menu_icon" onclick="openNav()">&#9776;</span></div>
-        <nav class="top-menu" id="total-entries">Total entries: 0</nav>
-        <h3 id="entry-table-heading">Diary Entries</h3>
-        <div class="tbl-header">
-          <table>
-            <thead>
-              <tr>
-                <th>Date</th>
-                <th>Title</th>
-                <th>Entry</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-          </table>
-        </div>
+      <div class="tbl-content">
+        <table>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</body>
 
-        <div class="tbl-content">
-          <table>
-            <tbody id="tbody"></tbody>
-          </table>
-        </div>
-      </section>
-    </main>
-  </body>
 </html>
 
 <!-- Jquery library -->
@@ -74,5 +76,3 @@
 <script src="public/js/myDiary.js"></script>
 <script src="public/js/entries.js"></script>
 <script src="public/js/logout.js"></script>
-
-

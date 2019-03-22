@@ -4,13 +4,13 @@ export default function (req, res, next) {
   const { title, entry } = req.body,
     errorsMessage = {};
 
-    // Catch errors for title entry field
+  // Catch errors for title entry field
   if ((title === undefined)) {
     errorsMessage.title = 'Title undefined. Title field is required';
-  } else if (!(validator.isLength(title, { min: 10, max: 30 }))) {
+  } else if (!(validator.isLength(title, { min: 4, max: 30 }))) {
     errorsMessage.title = 'Title Maximum character 30 and minmum 10';
   }
- 
+
   // Catch errors entry field
   if ((entry === undefined)) {
     errorsMessage.entry = 'Entry undefined. Entry field is required';

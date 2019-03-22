@@ -1,90 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>myDiary | Entries</title>
-    <link rel="stylesheet" href="public/css/sidebar.css" type="text/css" />
-    <link rel="stylesheet" href="public/css/userFeedback.css" type="text/css" />
-    <script src="public/js/font-awesome.js"></script>
-  </head>
-  <body onload="getUserinfo()">
-    <!-- Vertical sidebar -->
-    <div class="sidebar_menu" id="mySidenav">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
-        ><i class="fa fa-angle-left top-menu-icon"></i
-      ></a>
-      <center>
-        <a href="index.html"
-          ><h1 class="boxed_item"><span class="logo_bold">myDiary</span></h1>
-        </a>
-        <h2 class="logo_title">Write Any Where Any Time</h2>
-      </center>
-      <div class="nav_image">
-        <img src="public/img/passport.jpg" id="passport" class="avater" /><br />
-        <span id="user-name"><strong>Hi</strong></span>
-      </div>
 
-      <ul class="navigation_section">
-        <a href="compose.html">
-          <li class="navigation_item"><i class="fa fa-pen-square navigation_item-i"></i>Compose</li>
-        </a>
-        <a href="entries.html">
-          <li class="navigation_item"><i class="fa fa-heart navigation_item-i"></i>Entries</li>
-        </a>
-        <a href="account.html">
-          <li class="navigation_item"><i class="fa fa-user navigation_item-i"></i>Account</li>
-        </a>
-        <li>
-          <button class="icon-btn" id="logout">
-            <h1 class="boxed_item boxed_item_smaller signup"><i class="fa fa-user"></i> LOGOUT</h1>
-          </button>
-        </li>
-      </ul>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>myDiary | Entries</title>
+  <link rel="stylesheet" href="public/css/sidebar.css" type="text/css" />
+  <link rel="stylesheet" href="public/css/userFeedback.css" type="text/css" />
+  <script src="public/js/font-awesome.js"></script>
+</head>
+
+<body onload="getUserinfo()">
+  <!-- Vertical sidebar -->
+  <div class="sidebar_menu" id="mySidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class="fa fa-angle-left top-menu-icon"></i></a>
+    <center>
+      <a href="index.html"><h1 class="boxed_item"><span class="logo_bold">myDiary</span></h1>
+      </a>
+      <h2 class="logo_title">Write Any Where Any Time</h2>
+    </center>
+    <div class="nav_image">
+      <img id="passport" class="avater" /><br />
+      <span id="user-name"><strong>Hi</strong></span>
     </div>
-    <main>
-      <section class="container" id="container">
-        <div class="mobile-nav"><span class="mobile_menu_icon" onclick="openNav()">&#9776;</span></div>
-        <nav class="top-menu"><i class="fa fa-plus"></i> New Entry</nav>
 
-        <div class="form-container">
-          <form id="compose">
-            <label for="title">Title</label>
-            <input
-              type="text"
-              id="title"
-              name="title"
-              placeholder="Write entry title..."
-              pattern=".{10,30}"
-              title="Title should be 10 to 30 characters"
-            />
+    <ul class="navigation_section">
+      <a href="compose.html">
+        <li class="navigation_item"><i class="fa fa-pen-square navigation_item-i"></i>Compose</li>
+      </a>
+      <a href="entries.html">
+        <li class="navigation_item"><i class="fa fa-heart navigation_item-i"></i>Entries</li>
+      </a>
+      <a href="account.html">
+        <li class="navigation_item"><i class="fa fa-user navigation_item-i"></i>Account</li>
+      </a>
+      <li>
+        <button class="icon-btn" id="logout">
+          <h1 class="boxed_item boxed_item_smaller signup"><i class="fa fa-user"></i> LOGOUT</h1>
+        </button>
+      </li>
+    </ul>
+  </div>
+  <main>
+    <section class="container" id="container">
+      <div class="mobile-nav"><span class="mobile_menu_icon" onclick="openNav()">&#9776;</span></div>
+      <nav class="top-menu"><i class="fa fa-plus"></i> New Entry</nav>
 
-            <label for="date">Date</label> <input type="date" id="date" name="date" />
+      <div class="form-container">
+        <form id="compose">
+          <label for="title">Title</label>
+          <input type="text" id="title" name="title" placeholder="Write entry title..." pattern=".{4,30}" title="Title should be 10 to 30 characters"
+          />
 
-            <label for="entry">Entry</label>
-            <textarea
-              id="entry"
-              name="entry"
-              placeholder="Write something.."
-              style="height:200px"
-              maxlength="1000"
-              and
-              minlength="10"
-              title="Entry should be 10 to 1000 characters"
-              required
-            ></textarea>
-            <input type="submit" value="Save" id="submit" />
-          </form>
-        </div>
-      </section>
-      <div id="myModal" class="loader-box">
-        <div class="info-content">
-          <p><i class="fa fa-check teal"></i> Saved successfully</p>
-        </div>
+          <label for="date">Date</label> <input type="date" id="date" name="date" />
+
+          <label for="entry">Entry</label>
+          <textarea id="entry" name="entry" placeholder="Write something.." style="height:200px" maxlength="1000" and minlength="10"
+            title="Entry should be 10 to 1000 characters" required></textarea>
+          <input type="submit" value="Save" id="submit" />
+        </form>
       </div>
-    </main>
-  </body>
+    </section>
+    <div id="myModal" class="loader-box">
+      <div class="info-content">
+        <p><i class="fa fa-check teal"></i> Saved successfully</p>
+      </div>
+    </div>
+  </main>
+</body>
+
 </html>
 
 <!-- Jquery library -->

@@ -57,7 +57,7 @@ const createTables = () => {
     
      )`;
 
-  db.query(query, err => {
+  db.query(query, (err) => {
     if (err) {
       return err.message;
     }

@@ -4,7 +4,7 @@ const image = localStorage.getItem('image');
 if (!token) {
   window.location.href = './signin.html';
 }
-const compose = event => {
+const compose = (event) => {
   event.preventDefault();
   const post = {
     date: document.getElementById('date').value,
@@ -23,7 +23,7 @@ const compose = event => {
   const saveBtn = document.getElementById('submit');
   fetch('http://localhost:3000/api/v1/entries/', params)
     .then(res => res.json())
-    .then(data => {
+    .then((data) => {
       if (data.status === 'Success') {
         document.getElementById('myModal').style.cssText = 'display:block; position:fixed';
         setTimeout(() => {
@@ -31,7 +31,7 @@ const compose = event => {
         }, 2000);
       }
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
     });
 };
