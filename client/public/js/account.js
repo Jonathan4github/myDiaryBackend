@@ -10,7 +10,7 @@ const getUserAccount = () => {
       'x-access-token': token
     }
   };
-  fetch('http://localhost:3000/api/v1/user/account', option)
+  fetch('https://mydiary-v2.herokuapp.com/api/v1/user/account', option)
     .then(res => res.json())
     .then((data) => {
       const user = data.account;
@@ -38,7 +38,7 @@ const updateUserAccount = () => {
     },
     body: JSON.stringify(post)
   };
-  fetch('http://localhost:3000/api/v1/user/account', option)
+  fetch('https://mydiary-v2.herokuapp.com/api/v1/user/account', option)
     .then(res => res.json())
     .then((data) => {
       if (data.status === 'Success') {
