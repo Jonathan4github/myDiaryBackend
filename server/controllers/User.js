@@ -16,10 +16,11 @@ cloudinary.config({
 
 class UserController {
   /**
-   * @param {obj} req
-   * @param {obj} res
-   * @memberof UsersController
-   * @returns {obj} insertion error messages or success message
+   * Method for creating User
+   * @static
+   * @param {request} req
+   * @param {response} res
+   * @returns {obj} return json object to user.
    */
   signUp(req, res) {
     const { fullname, email, password } = req.body;
@@ -46,6 +47,12 @@ class UserController {
     });
   }
 
+  /**
+   * Method to Sign in User
+   * @param {request} req
+   * @param {response} res
+   * @return {obj} return sign in status.
+   */
   signIn(req, res) {
     const { email, password } = req.body;
     const text = `SELECT * FROM users WHERE email = '${email}'`;
@@ -82,6 +89,13 @@ class UserController {
       });
   }
 
+  /**
+   * Method to Get User account
+   * Authentication Required
+   * @param {request} req 
+   * @param {response} res
+   * @return {obj} return user account. 
+   */
   userAccount(req, res) {
     const sql = `SELECT * FROM users WHERE id = '${req.user.id}'`;
 
@@ -110,6 +124,13 @@ class UserController {
       });
   }
 
+  /**
+   * Method to Update User Account
+   * Authentication Required
+   * @param {request} req
+   * @param {response} res
+   * @return {obj} return update user.
+   */
   updateAccount(req, res) {
     const userId = req.user.id;
     const { fullname, email, password, reminder } = req.body;
@@ -160,6 +181,13 @@ class UserController {
     });
   }
 
+/**
+ * Method to Upload User Image
+ * Authentication required
+ * @param {request} req 
+ * @param {response} res
+ * @return {obj} return uploaded user image. 
+ */
   uploadImgae(req, res) {
     cloudinary.uploader.upload(req.files.image.path, result => {
       const userId = req.user.id;

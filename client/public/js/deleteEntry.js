@@ -17,7 +17,7 @@ const deleteEntry = () => {
       }
     };
 
-    fetch(`https://mydiary-v2.herokuapp.com/api/v1/entries/${entryId}`, option)
+    fetch(`http://localhost:3000/api/v1/entries/${entryId}`, option)
       .then(res => res.json())
       .then(data => {
         console.log(data);

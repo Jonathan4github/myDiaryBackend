@@ -18,5 +18,5 @@ const productionConfig = {
 module.exports = {
   test: testConfig,
   development: defaultConfig,
-  production: productionConfig
+  production: defaultConfig
 };
