@@ -36,7 +36,7 @@ const createTables = () => {
     
     reminder INTEGER  DEFAULT  0,
     
-    image VARCHAR(255),
+    image VARCHAR(255) 'https://via.placeholder.com/150',
     
     created_date TIMESTAMP,
     
