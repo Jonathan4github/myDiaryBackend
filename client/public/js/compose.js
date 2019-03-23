@@ -21,7 +21,7 @@ const compose = (event) => {
     body: JSON.stringify(post)
   };
   const saveBtn = document.getElementById('submit');
-  fetch('http://localhost:3000/api/v1/entries/', params)
+  fetch('https://mydiary-v2.herokuapp.com/api/v1/entries/', params)
     .then(res => res.json())
     .then((data) => {
       if (data.status === 'Success') {

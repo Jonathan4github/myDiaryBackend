@@ -13,7 +13,7 @@ const signIn = event => {
     body: JSON.stringify(post)
   };
 
-  fetch('http://localhost:3000/api/v1/auth/signin/', params)
+  fetch('https://mydiary-v2.herokuapp.com/api/v1/auth/signin/', params)
     .then(res => res.json())
     .then(data => {
       console.log(data);

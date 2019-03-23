@@ -39,7 +39,7 @@ const updateUserAccount = () => {
     },
     body: JSON.stringify(post)
   };
-  
+
   fetch('https://mydiary-v2.herokuapp.com/api/v1/user/account', option)
     .then(res => res.json())
     .then((data) => {
@@ -84,7 +84,7 @@ const updateImage = (e) => {
     },
     body: formData
   };
-  fetch('http://localhost:3000/api/v1/user/account/upload', option)
+  fetch('https://mydiary-v2.herokuapp.com/api/v1/user/account/upload', option)
     .then(res => res.json())
     .then((data) => {
       console.log(data);
