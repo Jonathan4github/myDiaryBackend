@@ -1,6 +1,9 @@
 {
   "name": "mydiarybackend",
   "version": "1.0.0",
+  "engines": {
+    "node": "10.3.0"
+  },
   "description": "an online journal where users can pen down their thoughts and feelings",
   "main": "app.js",
   "scripts": {
